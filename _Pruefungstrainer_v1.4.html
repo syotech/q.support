@@ -1,0 +1,1563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Prüfungstrainer v1.4</title>
+<style>
+  :root{
+    --bg:#0b1220;
+    --panel:#0f172a;
+    --muted:#94a3b8;
+    --text:#e5e7eb;
+    --brand:#22d3ee;
+    --accent:#7c3aed;
+    --ok:#16a34a;
+    --bad:#dc2626;
+    --blue:#1e40af;
+    --border:#1f2937;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0; font-family:system-ui,Segoe UI,Roboto,Helvetica,Arial,Inter,Ubuntu;
+    background: radial-gradient(1400px 900px at 15% -20%, #1b2742 0%, #0b1220 45%, #050b16 100%);
+    color:var(--text);
+    display:flex; flex-direction:column;
+  }
+  header{
+    position:sticky; top:0; z-index:5;
+    background: rgba(5,11,22,.7); backdrop-filter: blur(6px);
+    border-bottom:1px solid var(--border);
+  }
+  .wrap{max-width:1200px; margin:0 auto; padding:12px 16px}
+  .row{display:flex; gap:12px; flex-wrap:wrap; align-items:center}
+  .grow{flex:1 1 auto}
+  h1{font-size:20px; margin:0; letter-spacing:.2px}
+  nav button{
+    background:#0b1220; color:var(--text);
+    border:1px solid var(--border);
+    padding:8px 12px; border-radius:10px; cursor:pointer; transition:.15s;
+  }
+  nav button.active, nav button:hover{border-color:var(--brand); color:#e6fbff; box-shadow:0 0 0 2px rgba(34,211,238,.15) inset}
+  main{padding:18px 16px; flex:1 1 auto}
+  section{display:none}
+  section.active{display:block}
+  .panel{
+    background:linear-gradient(180deg, rgba(15,23,42,.8), rgba(8,13,26,.9));
+    border:1px solid var(--border); border-radius:14px;
+    padding:16px; margin-bottom:16px;
+  }
+  .title{font-weight:600; color:#e2e8f0; margin:0 0 8px 0}
+  label{display:block; font-size:13px; color:var(--muted); margin:8px 0 6px}
+  input[type="text"], textarea, select, input[type="number"]{
+    width:100%; padding:10px 12px; border-radius:10px;
+    background:#0b1220; border:1px solid var(--border); color:var(--text);
+    outline:none; transition:border .15s ease;
+  }
+  textarea{min-height:90px; resize:vertical}
+  input:focus, textarea:focus, select:focus{border-color:var(--brand)}
+  .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:10px; border:1px solid var(--border); background:#0b1220; color:var(--text); cursor:pointer;}
+  .btn:hover{border-color:var(--brand)}
+  .btn.primary{background:linear-gradient(90deg, #22d3ee, #7c3aed); color:#081018; border-color:transparent}
+  .btn.good{border-color:transparent; background:#07381a; color:#86efac}
+  .btn.bad{border-color:transparent; background:#3b0a0a; color:#fecaca}
+  .btn.warn{border-color:transparent; background:#3a2306; color:#fed7aa}
+  .grid{display:grid; gap:12px}
+  .two{grid-template-columns: 1fr 1fr}
+  .answers .item{display:flex; gap:8px; align-items:center; margin-bottom:8px; padding:8px; border:1px dashed var(--border); border-radius:8px; background:#0b1220; transition:.15s}
+  .answers .item.ok{background: rgba(22,163,74,.15); border-color:rgba(22,163,74,.35)}
+  .answers .item.bad{background: rgba(220,38,38,.15); border-color:rgba(220,38,38,.35)}
+  .answers .item input[type="checkbox"]{transform:scale(1.2)}
+  .answers .item input[type="text"]{flex:1 1 auto}
+  .answers .item .del{background:#240a0a}
+  .muted{color:var(--muted); font-size:13px}
+  .kbd{display:inline-block; padding:2px 6px; border:1px solid var(--border); border-radius:6px; background:#0b1220}
+  .bar{height:10px; background:#0b1220; border-radius:999px; overflow:hidden; border:1px solid var(--border)}
+  .bar > span{display:block; height:100%; background:linear-gradient(90deg, #22d3ee, #7c3aed)}
+  .pill{display:inline-block; padding:4px 8px; border-radius:999px; border:1px solid var(--border); background:#0b1220; font-size:12px}
+  .hidden{display:none !important}
+  .hr{height:1px; background:var(--border); margin:12px 0}
+  .mono{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;}
+  /* Exam Navigator */
+  .navgrid{display:grid; grid-template-columns: repeat(auto-fill, minmax(42px, 1fr)); gap:6px; margin-top:8px}
+  .navbtn{display:flex; align-items:center; justify-content:center; padding:8px 0; border-radius:10px; border:1px solid var(--border); background:#0b1220; cursor:pointer; user-select:none}
+  .navbtn.answered{background:rgba(37,99,235,.25); border-color:rgba(37,99,235,.5)}
+  .navbtn.current{box-shadow:0 0 0 2px rgba(34,211,238,.25) inset; border-color:var(--brand)}
+  /* Footer */
+  footer{border-top:1px solid var(--border); background:rgba(5,11,22,.7); backdrop-filter: blur(6px); padding:10px 16px; text-align:center; font-size:12.5px; color:#cbd5e1}
+  /* Lock banner / admin */
+  .lock{display:inline-flex;align-items:center;gap:6px;padding:2px 8px;border-radius:999px;border:1px solid #2a3a56;background:#0f1726}
+  .lock.ok{border-color:#1f5a32}
+  .hint{font-size:12px;color:#9fb0c8}
+  .disabledOverlay{position:relative}
+  .disabledOverlay.locked{pointer-events:none}
+  .disabledOverlay.locked::after{content:"🔒 Editor gesperrt – Admin entsperren";position:absolute;inset:0;background:rgba(9,12,18,.65);display:flex;align-items:center;justify-content:center;color:#c9d6e8;font-weight:700;border-radius:14px;pointer-events:auto}
+  .chip{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; border:1px solid var(--border); background:#0b1220; font-size:12px}
+
+  /* Color-blind friendly feedback marks */
+  .answers .item .mark{
+    font-weight:800; font-size:16px; min-width:1.2em; text-align:center;
+  }
+  /* optional: reinforce via border on ok/bad (already colored) */
+  .answers .item.ok{ box-shadow: inset 0 0 0 2px rgba(22,163,74,.35); }
+  .answers .item.bad{ box-shadow: inset 0 0 0 2px rgba(220,38,38,.35); }
+
+  /* Screen-reader only text utility */
+  .sr-only{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap row">
+    <h1 class="grow">🧠 Prüfungstrainer v1.4</h1>
+    <nav class="row">
+      <button data-tab="train" class="active">Training</button>
+      <button data-tab="exam">Prüfung</button>
+      <button data-tab="leitner">Leitner-5</button>
+      <button data-tab="pool">Fragenpool‑Editor</button>
+      <button data-tab="data">Import/Export</button>
+      <button data-tab="about">Über & Admin</button>
+      <button data-tab="hilfe">Hilfe</button>
+    </nav>
+  </div>
+</header>
+<main class="wrap">
+  <!-- TRAINING -->
+  <section id="tab-train" class="active">
+    <div class="panel">
+      <div class="row">
+        <div style="min-width:220px">
+          <label>Aktiver Fragenpool</label>
+          <select id="trainPoolSelect"></select>
+        </div>
+        <div class="grow">
+          <h3 class="title">Training – eine Frage nach der anderen</h3>
+          <div class="muted">
+            Aktiver Pool: <span id="activePoolLabel" class="pill">–</span> · Antworten sind zufällig gemischt.
+            <span class="pill">Hotkeys: ←/→, N/P, 1–9/0, C (prüfen), Enter (weiter)</span>
+          </div>
+        </div>
+        <div class="row">
+          <button class="btn" id="btnTrainShuffle">Zufall</button>
+          <button class="btn" id="btnTrainResetStats">Training zurücksetzen</button>
+        </div>
+      </div>
+      <div id="trainProgress" class="muted" style="margin:8px 0 10px"></div>
+      <div class="bar"><span id="trainBar" style="width:0%"></span></div>
+    </div>
+    <div id="trainCard" class="panel">
+      <div id="trainQuestionWrap"></div>
+      <div class="hr"></div>
+      <div id="trainExplain" class="muted" style="display:none; margin-bottom:8px;"></div>
+      <div class="row" id="trainBottomBar" style="justify-content:space-between; gap:8px; align-items:center">
+        <div class="row" style="gap:8px; align-items:center">
+          <span id="trainCategory" class="pill" style="display:none"></span>
+          <button class="btn" id="btnTrainExplain" style="display:none">Erklärung/Lösungshinweis</button>
+        </div>
+        <div class="row" style="gap:8px">
+          <button class="btn" id="btnTrainPrev">Zurück</button>
+          <button class="btn" id="btnTrainCheck">Antwort prüfen</button>
+          <button class="btn" id="btnTrainNext">Weiter</button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <!-- EXAM -->
+  <section id="tab-exam">
+    <div class="panel row">
+      <div style="min-width:220px">
+        <label>Aktiver Fragenpool</label>
+        <select id="examPoolSelect"></select>
+      </div>
+      <div class="grow">
+        <h3 class="title">Prüfung (Pool‑basiert)</h3>
+        <div class="muted">Eine Frage je Bildschirm. Zeitlimit optional. Navigator zum Springen; beantwortete blau.
+          <span class="pill">Hotkeys: ←/→, N/P, 1–9/0, Enter (weiter), E (abgeben)</span>
+        </div>
+      </div>
+      <div class="row">
+        <div>
+          <label>Anzahl Fragen</label>
+          <input type="number" id="examCount" value="10" min="1" step="1" style="width:120px">
+        </div>
+        <div>
+          <label>Zeitlimit (Minuten, 0 = kein Limit)</label>
+          <input type="number" id="examMinutes" value="30" min="0" step="1" style="width:150px">
+        </div>
+        <div style="align-self:flex-end">
+          <button class="btn primary" id="btnStartExam">Start</button>
+        </div>
+      </div>
+    </div>
+    <div id="examArea" class="panel hidden">
+      <div class="row">
+        <div class="grow">
+          <span id="examIndex" class="pill">1 / 10</span>
+          <span id="examAnswered" class="pill">Beantwortet: 0</span>
+          <span id="examPool" class="pill">Pool: –</span>
+        </div>
+        <div id="examTimer" class="pill">⏳ 00:00</div>
+      </div>
+      <div class="hr"></div>
+      <div id="examNav" class="navgrid"></div>
+      <div class="hr"></div>
+      <div id="examQuestionWrap"></div>
+      <div class="hr"></div>
+      <div class="row" style="justify-content:flex-end; gap:8px">
+        <button class="btn" id="btnExamPrev">Zurück</button>
+        <button class="btn" id="btnExamNext">Weiter</button>
+        <button class="btn warn" id="btnExamSubmit">Abgeben</button>
+      </div>
+    </div>
+    <div id="examResult" class="panel hidden"></div>
+  </section>
+  <!-- LEITNER -->
+  <section id="tab-leitner">
+    <div class="panel row">
+      <div class="grow">
+        <h3 class="title">Leitner-5 – Lernkästen (pro Pool)</h3>
+        <div class="muted">Fälligkeit: Box1 täglich, Box2 alle 2 Tage, Box3 alle 4 Tage, Box4 alle 7 Tage, Box5 alle 14 Tage.</div>
+      </div>
+      <div class="row">
+        <div class="chip"><input type="checkbox" id="selBox1" checked> Box 1</div>
+        <div class="chip"><input type="checkbox" id="selBox2" checked> Box 2</div>
+        <div class="chip"><input type="checkbox" id="selBox3" checked> Box 3</div>
+        <div class="chip"><input type="checkbox" id="selBox4" checked> Box 4</div>
+        <div class="chip"><input type="checkbox" id="selBox5" checked> Box 5</div>
+        <button class="btn" id="btnLeitnerDue">Nur fällige lernen</button>
+        <button class="btn" id="btnLeitnerAll">Alle in Auswahl lernen</button>
+        <button class="btn warn needsAdmin" id="btnLeitnerReset">Leitner zurücksetzen</button>
+      </div>
+    </div>
+    <div id="leitnerStats" class="panel"></div>
+    <div id="leitnerSession" class="panel hidden">
+      <div id="leitnerQuestionWrap"></div>
+      <div class="hr"></div>
+      <div class="row" style="justify-content:flex-end; gap:8px">
+        <button class="btn bad" id="btnLeitnerWrong">✗ Falsch</button>
+        <button class="btn good" id="btnLeitnerRight">✓ Richtig</button>
+        <button class="btn" id="btnLeitnerSkip">Überspringen</button>
+      </div>
+    </div>
+  </section>
+  <!-- FRAGENPOOL‑EDITOR -->
+  <section id="tab-pool">
+    <div class="panel">
+      <h3 class="title">Fragenpool verwalten</h3>
+      <div class="row">
+        <div style="min-width:220px">
+          <label>Pool auswählen</label>
+          <select id="poolSelect"></select>
+        </div>
+        <div style="min-width:240px">
+          <label>Poolname</label>
+          <input type="text" id="poolName" placeholder="z. B. IT‑Grundschutz" />
+        </div>
+        <div class="row" style="align-self:flex-end">
+          <button class="btn needsAdmin" id="btnPoolCreate">Anlegen/Aktualisieren</button>
+          <button class="btn warn needsAdmin" id="btnPoolDelete">Pool löschen</button>
+          <button class="btn" id="btnPoolExport">Pool exportieren</button>
+          <label class="btn needsAdmin" style="cursor:pointer">Pool importieren
+            <input id="poolImportFile" type="file" accept="application/json" class="hidden"/>
+          </label>
+        </div>
+      </div>
+      <div class="muted">Jeder Pool hat eigene Fragen, Leitner‑Boxen und Statistiken.</div>
+    </div>
+    <div class="panel">
+      <h3 class="title">Frage bearbeiten/erstellen</h3>
+      <div id="lockBanner" class="panel hidden" style="display:flex;align-items:center;justify-content:space-between;gap:10px;background:#0f1624;border:1px dashed #2a3a56">
+        <div>🔒 Editor ist gesperrt. Entsperre im Tab <em>Über & Admin</em> oder hier direkt.</div>
+        <button id="unlockInline" class="btn">Admin entsperren</button>
+      </div>
+      <div id="editorBlock" class="disabledOverlay">
+        <div class="grid">
+          <div>
+            <label>Fragetext</label>
+            <textarea id="qText" placeholder="Deine Frage …"></textarea>
+          </div>
+          <div class="grid two">
+            <div>
+              <label>Kategorie (optional)</label>
+              <input type="text" id="qCat" placeholder="z. B. Grundlagen, Recht, Technik …">
+            </div>
+            <div>
+              <label>Erklärung/Lösungshinweis (optional)</label>
+              <input type="text" id="qHint" placeholder="Kurzinfo, warum die Lösung korrekt ist …">
+            </div>
+          </div>
+          <div>
+            <label>Antwortoptionen</label>
+            <div id="answers" class="answers"></div>
+            <div class="row">
+              <button class="btn needsAdmin" id="btnAddAnswer">+ Antwort hinzufügen</button>
+              <span class="muted">Markiere <b>korrekt</b> per Checkbox. (Im Training/der Prüfung bleibt verborgen, ob Single/Multiple.)</span>
+            </div>
+          </div>
+          <div class="row" style="justify-content:flex-end; gap:8px">
+            <button class="btn needsAdmin" id="btnNew">Neu</button>
+            <button class="btn needsAdmin" id="btnSave">Speichern</button>
+            <button class="btn warn needsAdmin" id="btnDelete">Löschen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 class="title">Stapelimport (unterhalb der Einzelbearbeitung)</h3>
+      <div class="grid">
+        <div>
+          <label>Einfügen (Freitext)</label>
+          <textarea id="bulkText" class="mono" placeholder="# Format
+Frage
++ Richtige Antwort
+Falsche Antwort
++ Noch eine richtige
+---
+Nächste Frage
+…"></textarea>
+          <div class="muted">
+            <b>Auto-Erkennung korrekt:</b> Präfix <span class="kbd">+</span>, <span class="kbd">[x]</span>, <span class="kbd">(x)</span> oder <span class="kbd">✔</span> → korrekt.
+            Trennung zwischen Fragen mit <span class="kbd">---</span>.
+          </div>
+        </div>
+        <div class="grid two">
+          <div>
+            <label>Kategorie (optional, für alle neuen)</label>
+            <input type="text" id="bulkCat" placeholder="Kategorie für importierte Fragen">
+          </div>
+          <div class="row" style="align-items:end; gap:8px">
+            <button class="btn" id="btnParseBulk">Vorschau erzeugen</button>
+            <button class="btn primary needsAdmin" id="btnImportBulk">In aktuellen Pool importieren</button>
+          </div>
+        </div>
+        <div>
+          <label>Vorschau</label>
+          <div id="bulkPreview" class="panel mono" style="white-space:pre; max-height:240px; overflow:auto">Noch keine Vorschau.</div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 class="title">Vorhandene Fragen (aktiver Pool)</h3>
+      <div id="listWrap" class="mono"></div>
+    </div>
+  </section>
+  <!-- DATA -->
+  <section id="tab-data">
+    <div class="panel">
+      <h3 class="title">Datenverwaltung</h3>
+      <div class="grid two">
+        <div>
+          <div class="row" style="gap:8px">
+            <button class="btn" id="btnExportAllPools">Alle Pools exportieren</button>
+            <a id="downloadLink" class="btn" download="trainer_export.json" href="#">Download</a>
+          </div>
+          <div class="muted">Exportiert alle Fragenpools inkl. Stats & Leitner.</div>
+        </div>
+        <div>
+          <input type="file" id="fileImportAll" accept="application/json">
+          <div class="row" style="margin-top:8px; gap:8px">
+            <button class="btn needsAdmin" id="btnImportAll">Alle Pools importieren</button>
+            <button class="btn warn needsAdmin" id="btnWipeAll">Alles löschen</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="panel">
+      <h3 class="title">Lokale Speicherung</h3>
+      <div class="muted">Pools in <span class="kbd">localStorage</span> unter <span class="kbd">fragentrainer.pools.*</span> (Index: <span class="kbd">fragentrainer.pools.index</span>). Exportiere regelmäßig.</div>
+    </div>
+  </section>
+  <!-- ABOUT & ADMIN (mit PIN) -->
+  <section id="tab-about">
+    <div class="panel">
+      <h3 class="title">Über & Admin</h3>
+      <div class="row" style="align-items:center">
+        <span id="adminStatus" class="lock">🔒 Admin gesperrt</span>
+        <button id="btnUnlock" class="btn">Admin entsperren</button>
+        <button id="btnLock" class="btn">Sperren</button>
+        <button id="btnChangePin" class="btn">PIN setzen/ändern</button>
+      </div>
+      <div id="adminMsg" class="hint" style="margin-top:6px"></div>
+      <div class="hr"></div>
+      <div class="grid two">
+        <div class="panel">
+          <h4 style="margin:0 0 8px 0">Schnellaktionen</h4>
+          <div class="row" style="gap:8px">
+            <button class="btn" id="btnAdminExport">Backup (alle Pools)</button>
+            <button class="btn needsAdmin" id="btnAdminImport">Import öffnen</button>
+            <button class="btn warn needsAdmin" id="btnAdminWipe">Alles löschen</button>
+          </div>
+          <input type="file" id="adminImportFile" accept="application/json" class="hidden">
+          <p class="hint" style="margin-top:8px">Admin‑PIN wird als PBKDF2‑Hash (SHA‑256, Salt, 150k Iterationen) gespeichert. Nach 3 Fehlversuchen 60s Sperre.</p>
+        </div>
+        <div class="panel">
+          <h4 style="margin:0 0 8px 0">Info</h4>
+          <ul class="muted" style="margin:0; padding-left:18px">
+            <li>Ein‑Datei‑App, offline nutzbar.</li>
+            <li>Fragenpools & Stats im Browser‑LocalStorage.</li>
+            <li>Export/Import als JSON (Pool oder alle Pools).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- NEU: Vollständige MIT-Lizenz -->
+    <div class="panel">
+      <h4 style="margin:0 0 8px 0">Lizenz (MIT)</h4>
+      <div class="mono" style="white-space:pre-wrap; font-size:12px; line-height:1.5">
+MIT License
+
+Copyright (c) 2025 Heiko Zeller
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+      </div>
+    </div>
+    <div class="panel">
+      <h3 class="title">Einfache Statistik (aktiver Pool)</h3>
+      <div id="adminStats" class="mono">–</div>
+    </div>
+  </section>
+  <!-- HELP -->
+  <section id="tab-hilfe">
+    <div class="panel">
+      <h3 class="title">Kurz-Hilfe</h3>
+      <div class="mono" style="white-space:pre-wrap">
+<b>Hotkeys</b>
+• Training: ←/→ oder N/P blättern · 1–9/0 toggeln · C prüfen · Enter weiter
+• Prüfung: ←/→ oder N/P blättern · 1–9/0 toggeln · Enter weiter · E abgeben
+<b>Fragenpools</b>
+• Oben im Fragenpool‑Editor Pool erstellen, auswählen oder löschen.
+• Training/Prüfung/Leitner arbeiten immer mit dem aktuell ausgewählten Pool.
+<b>Leitner</b>
+• Boxen 1–5 selektieren. "Nur fällige" berücksichtigt Fälligkeit, "Alle in Auswahl" ignoriert sie.
+<b>Admin‑PIN</b>
+• Schutz für Editieren, Pool‑Import/-Löschen, Wipe, Leitner‑Reset.
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  Prüfungstrainer v1.4 • MIT • LocalStorage • Made with ❤️
+</footer>
+<script>
+/** ----------------------------
+ *  State / Helpers
+ *  ---------------------------- */
+const KEY_LEGACY = "fragentrainer.v7"; // Altbestand (wird migriert)
+let FRAGEN = []; // Aktiver Pool-Inhalt
+let ACTIVE_POOL = null; // {name, version, fragen:[]}
+let TRAIN = { order:[], idx:0, checked:false };
+let EXAM = { running:false, order:[], idx:0, answers:{}, count:10, startTs:0, endTs:0, minutes:30, timerId:null, deadline:0, answerOrder:{}};
+let LEITNER = { session:[], ptr:0 };
+const $ = sel => document.querySelector(sel);
+const $$ = sel => Array.from(document.querySelectorAll(sel));
+const uid = () => Math.random().toString(36).slice(2,10);
+const now = () => Date.now();
+const shuffle = (arr) => arr.slice().sort(()=>Math.random()-.5);
+/** ----------------------------
+ *  Admin‑PIN (PBKDF2, 150k Iterationen)
+ *  ---------------------------- */
+const LS_ADMIN = 'trainer.admin';
+const LS_ADMIN_LOCK = 'trainer.admin.lockedUntil';
+let isAdmin = false;
+async function deriveHash(pin, saltB64, iter){
+  const enc=new TextEncoder();
+  const salt=Uint8Array.from(atob(saltB64), c=>c.charCodeAt(0));
+  const key=await crypto.subtle.importKey('raw', enc.encode(pin), 'PBKDF2', false, ['deriveBits']);
+  const bits=await crypto.subtle.deriveBits({name:'PBKDF2', salt, iterations:iter, hash:'SHA-256'}, key, 256);
+  const bytes=new Uint8Array(bits);
+  return btoa(String.fromCharCode(...bytes));
+}
+function randomB64(len=16){ const a=new Uint8Array(len); crypto.getRandomValues(a); return btoa(String.fromCharCode(...a)) }
+function getAdminRec(){ try{return JSON.parse(localStorage.getItem(LS_ADMIN)||'null')}catch{return null} }
+function setAdminRec(rec){ localStorage.setItem(LS_ADMIN, JSON.stringify(rec)) }
+function updateAdminUI(){
+  const status=$('#adminStatus');
+  status.textContent = isAdmin ? '🔓 Admin aktiv' : '🔒 Admin gesperrt';
+  status.className = 'lock ' + (isAdmin?'ok':'');
+  // Lock banner + overlay
+  $('#lockBanner').classList.toggle('hidden', isAdmin);
+  $('#editorBlock').classList.toggle('locked', !isAdmin);
+  // Disable all needsAdmin buttons/inputs
+  $$('.needsAdmin').forEach(el=>{ el.disabled = !isAdmin });
+}
+async function unlockAdmin(){
+  const t=Date.now();
+  const lockedUntil=Number(localStorage.getItem(LS_ADMIN_LOCK)||'0');
+  if(t<lockedUntil){ $('#adminMsg').textContent=`Zu viele Fehlversuche. Erneut möglich ab ${new Date(lockedUntil).toLocaleTimeString()}.`; return; }
+  const rec=getAdminRec();
+  if(!rec){
+    const pin1=prompt('Ersten Admin‑PIN setzen (min. 6 Zeichen):');
+    if(!pin1 || pin1.length<6) return alert('PIN zu kurz.');
+    const pin2=prompt('PIN wiederholen:');
+    if(pin1!==pin2) return alert('Nicht identisch.');
+    const salt=randomB64(16); const iter=150000;
+    const hash=await deriveHash(pin1,salt,iter);
+    setAdminRec({salt,iter,hash});
+    isAdmin=true; updateAdminUI();
+    $('#adminMsg').textContent='Admin‑PIN gesetzt & entsperrt.';
+    return;
+  }
+  const pin=prompt('Admin‑PIN eingeben:');
+  if(pin==null) return;
+  const hash=await deriveHash(pin,rec.salt,rec.iter);
+  if(hash===rec.hash){
+    isAdmin=true; updateAdminUI();
+    $('#adminMsg').textContent='Admin entsperrt.';
+    return;
+  }
+  const fails=Number(sessionStorage.getItem('trainer.admin.fails')||'0')+1;
+  sessionStorage.setItem('trainer.admin.fails', String(fails));
+  if(fails>=3){
+    localStorage.setItem(LS_ADMIN_LOCK, String(t+60_000));
+    sessionStorage.setItem('trainer.admin.fails','0');
+    $('#adminMsg').textContent='3 Fehlversuche. 60s gesperrt.';
+  }else{
+    $('#adminMsg').textContent=`Falsche PIN (${fails}/3).`;
+  }
+}
+async function changePin(){
+  const rec=getAdminRec();
+  if(!rec){ return unlockAdmin(); }
+  if(!isAdmin){ alert('Bitte zuerst entsperren.'); return; }
+  const pin1=prompt('Neue PIN (min. 6 Zeichen):');
+  if(!pin1 || pin1.length<6) return alert('PIN zu kurz.');
+  const pin2=prompt('Neue PIN wiederholen:');
+  if(pin1!==pin2) return alert('Nicht identisch.'); 
+  const salt=randomB64(16); const iter=150000;
+  const hash=await deriveHash(pin1,salt,iter);
+  setAdminRec({salt,iter,hash});
+  $('#adminMsg').textContent='PIN aktualisiert.';
+}
+$('#btnUnlock').addEventListener('click', unlockAdmin);
+$('#unlockInline').addEventListener('click', unlockAdmin);
+$('#btnChangePin').addEventListener('click', changePin);
+$('#btnLock').addEventListener('click', ()=>{ isAdmin=false; updateAdminUI(); $('#adminMsg').textContent='Gesperrt.' });
+/** ----------------------------
+ *  Tabs
+ *  ---------------------------- */
+$$('nav button').forEach(btn=>{
+  btn.addEventListener('click', ()=>{
+    $$('.active').forEach(x=>x.classList.remove('active'));
+    btn.classList.add('active');
+    const tab = btn.dataset.tab;
+    $('#tab-'+tab).classList.add('active');
+    if(tab==='pool'){ renderList(); }
+    if(tab==='leitner'){ renderLeitnerStats(); }
+    if(tab==='about'){ renderAdminStats(); }
+    if(tab==='train' || tab==='exam'){ syncPoolSelectors(); }
+    updateAdminUI();
+  });
+});
+/** ----------------------------
+ *  Pools (Index + Persist pro Pool)
+ *  ---------------------------- */
+const POOL_INDEX_KEY = 'fragentrainer.pools.index';
+const POOL_DATA_KEY = (name) => 'fragentrainer.pools.data.'+encodeURIComponent(name);
+function listPools(){
+  try{ const a = JSON.parse(localStorage.getItem(POOL_INDEX_KEY)||'[]'); return Array.isArray(a)? a : []; }catch{return []}
+}
+function savePoolIndex(names){
+  localStorage.setItem(POOL_INDEX_KEY, JSON.stringify(Array.from(new Set(names)).filter(Boolean)));
+}
+function loadPoolData(name){
+  try{ const obj = JSON.parse(localStorage.getItem(POOL_DATA_KEY(name))||'null'); return obj; }catch{return null}
+}
+function savePoolData(name, obj){
+  localStorage.setItem(POOL_DATA_KEY(name), JSON.stringify(obj));
+  const idx = listPools();
+  if(!idx.includes(name)){ idx.push(name); savePoolIndex(idx); }
+}
+function deletePoolData(name){
+  localStorage.removeItem(POOL_DATA_KEY(name));
+  const idx = listPools().filter(n=>n!==name);
+  savePoolIndex(idx);
+}
+function setActivePool(name){
+  const data = loadPoolData(name);
+  if(!data){ return false; }
+  ACTIVE_POOL = data;
+  FRAGEN = Array.isArray(data.fragen)? data.fragen : [];
+  ensureDefaults();
+  $('#activePoolLabel').textContent = name;
+  $('#examPool').textContent = 'Pool: '+name;
+  refreshPoolSelect(name);
+  saveActivePool(); // write back normalized
+  startTraining(false);
+  renderList();
+  renderLeitnerStats();
+  renderAdminStats();
+  return true;
+}
+function createOrUpdatePool(name){
+  if(!name) return;
+  const obj = loadPoolData(name) || { name, version:'v9', created: now(), fragen: [] };
+  obj.name = name;
+  obj.version = 'v9';
+  savePoolData(name, obj);
+  setActivePool(name);
+}
+function saveActivePool(){
+  if(!ACTIVE_POOL) return;
+  ACTIVE_POOL.fragen = FRAGEN;
+  savePoolData(ACTIVE_POOL.name, ACTIVE_POOL);
+}
+function refreshPoolSelect(preset=null){
+  const sel = $('#poolSelect');
+  if(!sel) return;
+  const idx = listPools();
+  sel.innerHTML = idx.map(n=>`<option value="${escapeHtmlAttr(n)}">${escapeHtml(n)}</option>`).join('');
+  if(preset && idx.includes(preset)) sel.value = preset;
+  // Neu: auch Training/Prüfung aktualisieren
+  syncPoolSelectors();
+}
+function syncPoolSelectors(){
+  const pools = listPools();
+  const html = pools.map(n=>`<option value="${escapeHtmlAttr(n)}">${escapeHtml(n)}</option>`).join('');
+  
+  const trainSel = $('#trainPoolSelect');
+  if(trainSel){
+    trainSel.innerHTML = html;
+    if(ACTIVE_POOL?.name) trainSel.value = ACTIVE_POOL.name;
+  }
+  
+  const examSel = $('#examPoolSelect');
+  if(examSel){
+    examSel.innerHTML = html;
+    if(ACTIVE_POOL?.name) examSel.value = ACTIVE_POOL.name;
+  }
+}
+$('#poolSelect')?.addEventListener('change', (e)=>{
+  const name = e.target.value;
+  if(name) setActivePool(name);
+});
+$('#trainPoolSelect')?.addEventListener('change', (e)=>{ setActivePool(e.target.value); });
+$('#examPoolSelect')?.addEventListener('change', (e)=>{ setActivePool(e.target.value); });
+$('#btnPoolCreate').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  const name = $('#poolName').value.trim() || $('#poolSelect').value;
+  if(!name){ alert('Bitte Poolnamen angeben.'); return; }
+  createOrUpdatePool(name);
+  alert('Pool angelegt/aktualisiert.');
+});
+$('#btnPoolDelete').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  const name = $('#poolSelect').value || $('#poolName').value.trim();
+  if(!name) return;
+  if(!confirm(`Pool "${name}" wirklich löschen?`)) return;
+  deletePoolData(name);
+  const idx = listPools();
+  if(idx.length){ setActivePool(idx[0]); } else { createDefaultPool(); }
+});
+$('#btnPoolExport').addEventListener('click', ()=>{
+  const name = $('#poolSelect').value;
+  if(!name){ alert('Kein Pool ausgewählt.'); return; }
+  const data = loadPoolData(name);
+  if(!data){ alert('Leerer Pool.'); return; }
+  const blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = `fragenpool_${encodeURIComponent(name)}.json`; a.click();
+  URL.revokeObjectURL(url);
+});
+$('#poolImportFile').addEventListener('change', async (e)=>{
+  if(!isAdmin){ e.target.value=''; return alert('Admin gesperrt.'); }
+  const file=e.target.files?.[0]; if(!file) return;
+  const text = await file.text();
+  try{
+    const json = JSON.parse(text);
+    let targetName = $('#poolSelect').value || $('#poolName').value.trim() || json.name || 'Import';
+    let fragen = [];
+    if(Array.isArray(json)){ // direktes Fragenarray (unser Format)
+      fragen = convertMaybeV7Array(json);
+    }else if(Array.isArray(json.fragen)){ // unser v9 Format
+      fragen = convertMaybeV7Array(json.fragen);
+      targetName = json.name || targetName;
+    }else if(Array.isArray(json.questions)){ // v1.12 Format ➜ konvertieren
+      fragen = convertFromV112(json.questions);
+      targetName = json.name || targetName;
+    }else{
+      throw new Error('Unbekanntes JSON-Format.');
+    }
+    const poolObj = { name: targetName, version:'v9', created: now(), fragen };
+    savePoolData(targetName, poolObj);
+    setActivePool(targetName);
+    alert(`Import erfolgreich: ${fragen.length} Fragen in Pool "${targetName}".`);
+  }catch(err){
+    alert('Import fehlgeschlagen: '+err.message);
+  }finally{
+    e.target.value='';
+  }
+});
+function convertMaybeV7Array(arr){
+  // Normalisiert ältere Frageobjekte
+  return arr.map(q=>{
+    const out = {
+      id: q.id || uid(),
+      frage: q.frage || q.q || '',
+      antworten: Array.isArray(q.antworten) ? q.antworten.map(a=>({id:a.id||uid(), text:a.text||String(a)||'', korrekt:!!a.korrekt})) :
+                Array.isArray(q.choices) ? q.choices.map((t,i)=>({id:uid(), text:String(t), korrekt: Array.isArray(q.correct)? q.correct.includes(i) : false})) : [],
+      erklaerung: q.erklaerung || q.explain || '',
+      kategorie: q.kategorie || (Array.isArray(q.tags)? q.tags.join(', ') : ''),
+      leitnerBox: Math.min(5, Math.max(1, q.leitnerBox||1)),
+      stats: q.stats || {asked:0, correct:0, streak:0}
+    };
+    if(!out.antworten.some(a=>a.korrekt) && Array.isArray(q.correct) && q.correct.length){
+      out.antworten = out.antworten.map((a,i)=>({...a, korrekt: q.correct.includes(i)}));
+    }
+    return out;
+  });
+}
+function convertFromV112(questions){
+  // aus Datei v1.12 (choices + correct indices) zu unserem Format
+  return questions.map(q=>{
+    const ans = (q.choices||[]).map((t,i)=>({id:uid(), text:String(t), korrekt:Array.isArray(q.correct)?q.correct.includes(i):false}));
+    return {
+      id: q.id || uid(),
+      frage: q.q || '',
+      antworten: ans,
+      erklaerung: q.explain || '',
+      kategorie: Array.isArray(q.tags) ? q.tags.join(', ') : '',
+      leitnerBox: 1,
+      stats: {asked:0, correct:0, streak:0}
+    };
+  });
+}
+/** ----------------------------
+ *  Render Question Helper
+ *  ---------------------------- */
+function renderQuestionInto(el, q, namePrefix, opts={}){
+  const { shuffleAnswers=false, selectedIds=new Set(), showColors=false } = opts;
+  let order = q.antworten.slice();
+  if(shuffleAnswers) order = shuffle(order);
+  const html = `
+    <div style="font-size:18px; font-weight:600; margin-bottom:8px">${escapeHtml(q.frage)}</div>
+    ${q.kategorie?`<div class="pill" title="Kategorie">${escapeHtml(q.kategorie)}</div>`:''}
+    <div class="hr"></div>
+    <div class="answers">
+      ${order.map(a=>{
+        let cls = "item";
+        if(showColors){
+          if(a.korrekt){ cls += " ok"; }
+          else if(selectedIds.has(a.id)){ cls += " bad"; }
+        }
+        const checked = selectedIds.has(a.id) ? "checked" : "";
+        
+return `
+        <div class="${cls}">
+          <input type="checkbox" id="${namePrefix}-${a.id}" ${checked}>
+          <label for="${namePrefix}-${a.id}" style="flex:1 1 auto; display:flex; align-items:center; justify-content:space-between; gap:8px">
+            <span>${escapeHtml(a.text)}</span>
+            ${showColors ? `<span class="mark" aria-hidden="true">${ a.korrekt ? '✓' : (selectedIds.has(a.id) ? '✗' : '') }</span>` : ``}
+          </label>
+        </div>`;
+
+      }).join('')}
+    </div>
+    <div id="${namePrefix}-feedback" class="muted"></div>
+  `;
+  el.innerHTML = html;
+}
+/** ----------------------------
+ *  Training
+ *  ---------------------------- */
+function startTraining(shuffleQ=false){
+  TRAIN.order = FRAGEN.map((_,i)=>i);
+  if(shuffleQ) TRAIN.order.sort(()=>Math.random()-.5);
+  TRAIN.idx = 0; TRAIN.checked = false;
+  renderTrainQuestion();
+}
+function renderTrainProgress(){
+  const total = TRAIN.order.length || 1;
+  const pos = Math.min(TRAIN.idx+1, total);
+  $('#trainProgress').textContent = `Frage ${pos} / ${total}`;
+  $('#trainBar').style.width = ((pos-1)/total*100).toFixed(1)+'%';
+}
+function renderTrainQuestion(){
+  if(!TRAIN.order.length){ $('#trainQuestionWrap').innerHTML = `<div class="muted">Keine Fragen im Pool.</div>`; return; }
+  const q = FRAGEN[ TRAIN.order[TRAIN.idx] ];
+  renderQuestionInto($('#trainQuestionWrap'), q, 'train', {shuffleAnswers:true, selectedIds:new Set(), showColors:false});
+  // Update bottom-left meta (category + explanation toggle)
+  const catEl = $('#trainCategory');
+  if(catEl){
+    if(q.kategorie && String(q.kategorie).trim()){
+      catEl.textContent = String(q.kategorie).trim();
+      catEl.style.display = 'inline-flex';
+    }else{
+      catEl.style.display = 'none';
+    }
+  }
+  const exEl = $('#trainExplain');
+  const exBtn = $('#btnTrainExplain');
+  if(exEl){ exEl.style.display = 'none'; exEl.textContent = ''; }
+  TRAIN.showExplain = false;
+  if(exBtn){
+    if(q.erklaerung && String(q.erklaerung).trim()){
+      exBtn.style.display = 'inline-flex';
+      exBtn.disabled = false;
+      exBtn.textContent = 'Erklärung/Lösungshinweis';
+    }else{
+      exBtn.style.display = 'none';
+    }
+  }
+
+  renderTrainProgress();
+}
+function trainPrev(){
+  if(!TRAIN.order.length) return;
+  TRAIN.idx = (TRAIN.idx - 1 + TRAIN.order.length) % TRAIN.order.length;
+  TRAIN.checked = false;
+  renderTrainQuestion();
+}
+function trainNext(){
+  if(!TRAIN.order.length) return;
+  TRAIN.idx = (TRAIN.idx + 1) % TRAIN.order.length;
+  TRAIN.checked = false;
+  renderTrainQuestion();
+}
+$('#btnTrainShuffle').addEventListener('click', ()=>startTraining(true));
+$('#btnTrainResetStats').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  for(const q of FRAGEN){ q.stats={asked:0,correct:0,streak:0}; q.leitnerBox = 1; }
+  saveActivePool(); renderLeitnerStats(); startTraining(false);
+});
+$('#btnTrainPrev').addEventListener('click', trainPrev);
+$('#btnTrainNext').addEventListener('click', trainNext);
+$('#btnTrainCheck').addEventListener('click', ()=>{
+  const q = FRAGEN[ TRAIN.order[TRAIN.idx] ];
+  const picks = getSelectedIds('train', q);
+  const ok = isAnswerCorrect(q, picks);
+  q.stats.asked++; if(ok){ q.stats.correct++; q.stats.streak++; } else { q.stats.streak=0; }
+  q.stats.lastSeen = now(); q.stats.lastResult = ok?'richtig':'falsch';
+  if(ok){ q.leitnerBox = Math.min(5, (q.leitnerBox||1)+1); } else { q.leitnerBox = 1; }
+  saveActivePool();
+  const fb = $('#train-feedback');
+  if(fb){
+    fb.innerHTML = ok ? `<div style="color:#86efac">Richtig!${q.erklaerung?'<br>'+escapeHtml(q.erklaerung):''}</div>`
+                      : `<div style="color:#fecaca">Leider falsch.${q.erklaerung?'<br>'+escapeHtml(q.erklaerung):''}</div>`;
+  }
+  renderQuestionInto($('#trainQuestionWrap'), q, 'train', {shuffleAnswers:false, selectedIds:picks, showColors:true});
+  TRAIN.checked = true;
+});
+$('#btnTrainExplain').addEventListener('click', ()=>{
+  const exEl = $('#trainExplain');
+  const exBtn = $('#btnTrainExplain');
+  const q = FRAGEN[ TRAIN.order[TRAIN.idx] ];
+  if(!q || !q.erklaerung) return;
+  TRAIN.showExplain = !TRAIN.showExplain;
+  if(TRAIN.showExplain){
+    exEl.innerHTML = escapeHtml(q.erklaerung);
+    exEl.style.display = 'block';
+    if(exBtn) exBtn.textContent = 'Erklärung/Lösungshinweis';
+  }else{
+    exEl.style.display = 'none';
+    if(exBtn) exBtn.textContent = 'Erklärung/Lösungshinweis';
+  }
+});
+/** ----------------------------
+ *  Exam
+ *  ---------------------------- */
+$('#btnStartExam').addEventListener('click', ()=>{
+  if(!FRAGEN.length){ alert('Im aktiven Pool sind keine Fragen.'); return; }
+  const n = Math.max(1, Math.min(FRAGEN.length, parseInt($('#examCount').value||'1',10)));
+  const mins = Math.max(0, parseInt($('#examMinutes').value||'0',10));
+  EXAM.running = true; EXAM.idx = 0; EXAM.count = n; EXAM.startTs = now(); EXAM.endTs = 0; EXAM.answers = {}; EXAM.answerOrder={};
+  EXAM.order = FRAGEN.map((_,i)=>i).sort(()=>Math.random()-.5).slice(0,n);
+  for(const i of EXAM.order){
+    const q = FRAGEN[i];
+    EXAM.answerOrder[q.id] = shuffle(q.antworten.map(a=>a.id));
+  }
+  clearInterval(EXAM.timerId); EXAM.timerId = null;
+  if(mins>0){
+    EXAM.minutes = mins;
+    EXAM.deadline = EXAM.startTs + mins*60*1000;
+    updateTimer();
+    EXAM.timerId = setInterval(()=>{
+      updateTimer();
+      if(now() >= EXAM.deadline){ clearInterval(EXAM.timerId); EXAM.timerId=null; autoSubmitExam(); }
+    }, 300);
+  }else{
+    $('#examTimer').textContent = '⏳ kein Limit';
+    EXAM.deadline = 0;
+  }
+  $('#examResult').classList.add('hidden');
+  $('#examArea').classList.remove('hidden');
+  renderExamNav();
+  renderExamQuestion();
+});
+function updateTimer(){
+  const remain = Math.max(0, EXAM.deadline - now());
+  const s = Math.floor(remain/1000);
+  const mm = String(Math.floor(s/60)).padStart(2,'0');
+  const ss = String(s%60).padStart(2,'0');
+  $('#examTimer').textContent = `⏳ ${mm}:${ss}`;
+}
+function autoSubmitExam(){
+  if(!EXAM.running) return;
+  storeExamCurrent();
+  EXAM.endTs = now(); EXAM.running = false;
+  gradeExam(true);
+}
+$('#btnExamPrev').addEventListener('click', ()=>{
+  if(!EXAM.running) return;
+  storeExamCurrent();
+  EXAM.idx = Math.max(0, EXAM.idx-1);
+  renderExamQuestion();
+});
+$('#btnExamNext').addEventListener('click', ()=>{
+  if(!EXAM.running) return;
+  storeExamCurrent();
+  if(EXAM.idx < EXAM.count-1){ EXAM.idx++; renderExamQuestion(); }
+});
+$('#btnExamSubmit').addEventListener('click', ()=>{
+  if(!EXAM.running) return;
+  storeExamCurrent();
+  EXAM.endTs = now(); EXAM.running = false;
+  clearInterval(EXAM.timerId); EXAM.timerId=null;
+  gradeExam(false);
+});
+function renderExamQuestion(){
+  const i = EXAM.order[EXAM.idx];
+  const q = FRAGEN[i];
+  const selected = new Set(EXAM.answers[q.id]||[]);
+  renderQuestionInto($('#examQuestionWrap'), q, 'exam', {shuffleAnswers:false, selectedIds:selected, showColors:false});
+  const orderIds = EXAM.answerOrder[q.id];
+  if(orderIds && orderIds.length){
+    const container = $('#examQuestionWrap .answers');
+    const items = Array.from(container.children);
+    items.sort((a,b)=>{
+      const idA = a.querySelector('input[type="checkbox"]').id.replace('exam-','');
+      const idB = b.querySelector('input[type="checkbox"]').id.replace('exam-','');
+      return orderIds.indexOf(idA) - orderIds.indexOf(idB);
+    }).forEach(n=>container.appendChild(n));
+  }
+  $('#examIndex').textContent = `${EXAM.idx+1} / ${EXAM.count}`;
+  updateExamAnswered();
+  renderExamNav();
+}
+function getSelectedIds(prefix, q){
+  const picks = new Set();
+  for(const a of q.antworten){
+    const box = $('#'+prefix+'-'+a.id);
+    if(box && box.checked) picks.add(a.id);
+  }
+  return picks;
+}
+function isAnswerCorrect(q, picks){
+  const correctIds = new Set(q.antworten.filter(a=>a.korrekt).map(a=>a.id));
+  if(picks.size !== correctIds.size) return false;
+  for(const id of picks){ if(!correctIds.has(id)) return false; }
+  return true;
+}
+function storeExamCurrent(){
+  const idx = EXAM.order[EXAM.idx];
+  const q = FRAGEN[idx];
+  const picks = Array.from(getSelectedIds('exam', q).values());
+  EXAM.answers[q.id] = picks;
+  updateExamAnswered();
+}
+function updateExamAnswered(){
+  let answered = 0;
+  for(const j of EXAM.order){
+    const q = FRAGEN[j];
+    if(EXAM.answers[q.id] && EXAM.answers[q.id].length>0) answered++;
+  }
+  $('#examAnswered').textContent = `Beantwortet: ${answered} / ${EXAM.count}`;
+}
+function renderExamNav(){
+  const grid = $('#examNav');
+  const btns = EXAM.order.map((i, idx)=>{
+    const q = FRAGEN[i];
+    const answered = EXAM.answers[q.id] && EXAM.answers[q.id].length>0;
+    const cls = 'navbtn'+(answered?' answered':'')+(idx===EXAM.idx?' current':'');
+    return `<div class="${cls}" data-j="${idx}">${idx+1}</div>`;
+  }).join('');
+  grid.innerHTML = btns;
+  grid.querySelectorAll('.navbtn').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      if(!EXAM.running) return;
+      storeExamCurrent();
+      EXAM.idx = parseInt(b.dataset.j,10);
+      renderExamQuestion();
+    });
+  });
+}
+function gradeExam(auto=false){
+  let ok=0, total=EXAM.count;
+  const blocks = [];
+  for(let j=0;j<EXAM.count;j++){
+    const i = EXAM.order[j];
+    const q = FRAGEN[i];
+    const picks = new Set(EXAM.answers[q.id]||[]);
+    const isOk = isAnswerCorrect(q, picks);
+    q.stats.asked++; if(isOk){ q.stats.correct++; q.stats.streak++; q.leitnerBox = Math.min(5,(q.leitnerBox||1)+1); } else { q.stats.streak = 0; q.leitnerBox = 1; }
+    q.stats.lastSeen = now(); q.stats.lastResult = isOk?'richtig':'falsch';
+    if(isOk) ok++;
+    const chosen = q.antworten.filter(a=>picks.has(a.id)).map(a=>a.text).join(' | ') || '—';
+    const correct = q.antworten.filter(a=>a.korrekt).map(a=>a.text).join(' | ');
+    blocks.push(`
+      <div class="panel" style="padding:12px; margin-bottom:8px">
+        <div style="display:flex; gap:8px; align-items:center">
+          <div class="pill">#${j+1}</div>
+          <div class="grow"><b>${escapeHtml(q.frage)}</b></div>
+          <div>${isOk?'<span style="color:#86efac">✓</span>':'<span style="color:#fecaca">✗</span>'}</div>
+        </div>
+        <div class="muted mono" style="margin-top:6px">Deine Auswahl: ${escapeHtml(chosen)}</div>
+        <div class="muted mono">Korrekt: ${escapeHtml(correct)}</div>
+      </div>
+    `);
+  }
+  saveActivePool();
+  const pct = Math.round(ok/total*100);
+  $('#examArea').classList.add('hidden');
+  $('#examResult').classList.remove('hidden');
+  $('#examResult').innerHTML = `
+    <div class="row"><div class="grow">
+      <div style="font-size:22px; font-weight:700">Ergebnis: ${ok} / ${total} (${pct}%)</div>
+      <div class="muted">Dauer: ${formatDuration((EXAM.endTs||now())-EXAM.startTs)}${EXAM.deadline? (auto?' • Zeit überschritten – automatisch abgegeben':''):''}</div>
+      <div class="muted">Pool: ${escapeHtml(ACTIVE_POOL?.name||'–')}</div>
+    </div>
+    <div><button class="btn" id="btnExamRestart">Neue Prüfung</button></div></div>
+    <div class="hr"></div>
+    ${blocks.join('')}
+  `;
+  $('#btnExamRestart').addEventListener('click', ()=>{
+    $('#examResult').classList.add('hidden');
+    $('#examArea').classList.add('hidden');
+  });
+}
+/** ----------------------------
+ *  Leitner + Filter
+ *  ---------------------------- */
+function renderLeitnerStats(){
+  const counts = [0,0,0,0,0,0];
+  for(const q of FRAGEN){ counts[q.leitnerBox||1]++; }
+  const total = FRAGEN.length;
+  $('#leitnerStats').innerHTML = `
+    <div class="grid" style="grid-template-columns: repeat(5, 1fr); gap:12px">
+      ${[1,2,3,4,5].map(b=>`
+        <div class="panel" style="padding:12px">
+          <div class="muted">Box ${b}</div>
+          <div style="font-size:24px; font-weight:700">${counts[b]}</div>
+        </div>
+      `).join("")}
+    </div>
+    <div class="muted" style="margin-top:8px">Gesamt: ${total}</div>
+  `;
+}
+function leitnerDue(q){
+  const last = q.stats?.lastSeen || 0;
+  const box = q.leitnerBox||1;
+  const days = [0,1,2,4,7,14][box] || 1;
+  const dueAt = last + days*24*3600*1000;
+  return now() >= dueAt;
+}
+function getSelectedBoxes(){
+  const boxes = [];
+  for(let b=1;b<=5;b++){ if($('#selBox'+b)?.checked) boxes.push(b); }
+  return boxes.length? boxes : [1,2,3,4,5];
+}
+function startLeitnerSession(dueOnly=true){
+  const allowed = new Set(getSelectedBoxes());
+  let pool = FRAGEN.filter(q=> allowed.has(q.leitnerBox||1));
+  if(dueOnly) pool = pool.filter(leitnerDue);
+  if(!pool.length){ alert("Keine passenden Fragen in der Auswahl."); $('#leitnerSession').classList.add('hidden'); return; }
+  LEITNER.session = shuffle(pool);
+  LEITNER.ptr = 0;
+  $('#leitnerSession').classList.remove('hidden');
+  renderLeitnerQuestion();
+}
+function goTab(tab){
+  // programmatic tab switch mirroring the nav handler
+  $$('.active').forEach(x=>x.classList.remove('active'));
+  const btn = document.querySelector('nav button[data-tab="'+tab+'"]');
+  if(btn) btn.classList.add('active');
+  const sec = $('#tab-'+tab);
+  if(sec) sec.classList.add('active');
+  if(tab==='pool'){ renderList(); }
+  if(tab==='leitner'){ renderLeitnerStats(); }
+  if(tab==='about'){ renderAdminStats(); }
+  if(tab==='train' || tab==='exam'){ syncPoolSelectors(); }
+  updateAdminUI();
+}
+
+// Build subset indices from Leitner selection
+function buildLeitnerSubsetIndices(dueOnly){
+  const allowed = new Set(getSelectedBoxes());
+  const out = [];
+  FRAGEN.forEach((q, idx)=>{
+    const box = q.leitnerBox || 1;
+    const due = leitnerDue(q);
+    if(allowed.has(box) && (!dueOnly || due)){
+      out.push(idx);
+    }
+  });
+  return out;
+}
+
+// Start training with a subset order and virtual label
+function startTrainingSubset(order, virtualLabel){
+  if(!order.length){ alert('Keine passenden Fragen in der Auswahl.'); return; }
+  TRAIN.order = order.slice();
+  TRAIN.idx = 0; TRAIN.checked = false;
+  TRAIN.virtualLabel = virtualLabel || null;
+  // Update label to show base pool + virtual tag
+  const base = ACTIVE_POOL?.name || '–';
+  $('#activePoolLabel').textContent = TRAIN.virtualLabel ? (base + ' · ' + TRAIN.virtualLabel) : base;
+  renderTrainQuestion();
+  renderTrainProgress();
+  goTab('train');
+}
+
+// Entrypoints from Leitner buttons
+function startTrainingFromLeitner(dueOnly){
+  const order = buildLeitnerSubsetIndices(!!dueOnly);
+  const label = dueOnly ? 'Leitner fällige' : 'Leitner Auswahl';
+  startTrainingSubset(order, label);
+}
+
+function renderLeitnerQuestion(){
+  const q = LEITNER.session[LEITNER.ptr];
+  renderQuestionInto($('#leitnerQuestionWrap'), q, 'leitner', {shuffleAnswers:true});
+}
+$('#btnLeitnerDue').addEventListener('click', ()=>startTrainingFromLeitner(true));
+$('#btnLeitnerAll').addEventListener('click', ()=>startTrainingFromLeitner(false));
+$('#btnLeitnerReset').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  for(const q of FRAGEN){ q.leitnerBox = 1; q.stats={asked:0,correct:0,streak:0}; }
+  saveActivePool(); renderLeitnerStats();
+});
+$('#btnLeitnerRight').addEventListener('click', ()=>{
+  const q = LEITNER.session[LEITNER.ptr];
+  q.leitnerBox = Math.min(5,(q.leitnerBox||1)+1);
+  q.stats.lastSeen = now(); q.stats.lastResult='richtig';
+  saveActivePool(); nextLeitner();
+});
+$('#btnLeitnerWrong').addEventListener('click', ()=>{
+  const q = LEITNER.session[LEITNER.ptr];
+  q.leitnerBox = 1;
+  q.stats.lastSeen = now(); q.stats.lastResult='falsch';
+  saveActivePool(); nextLeitner();
+});
+$('#btnLeitnerSkip').addEventListener('click', ()=> nextLeitner());
+function nextLeitner(){
+  LEITNER.ptr++;
+  if(LEITNER.ptr >= LEITNER.session.length){
+    $('#leitnerSession').classList.add('hidden');
+    renderLeitnerStats();
+  }else{
+    renderLeitnerQuestion();
+  }
+}
+/** ----------------------------
+ *  Editor / CRUD (arbeitet auf FRAGEN des aktiven Pools)
+ *  ---------------------------- */
+let EDIT = { currentId:null };
+function setEditor(q){
+  EDIT.currentId = q?.id || null;
+  $('#qText').value = q?.frage || "";
+  $('#qCat').value = q?.kategorie || "";
+  $('#qHint').value = q?.erklaerung || "";
+  const cont = $('#answers');
+  cont.innerHTML = "";
+  (q?.antworten?.length? q.antworten : [
+    {id:uid(), text:"", korrekt:false},
+    {id:uid(), text:"", korrekt:false},
+  ]).forEach(a=> addAnswerRow(a.text, a.korrekt, a.id));
+  updateAdminUI();
+}
+function addAnswerRow(text="", korrekt=false, id=uid()){
+  const wrap = document.createElement('div');
+  wrap.className = 'item';
+  wrap.innerHTML = `
+    <input type="checkbox" ${korrekt?'checked':''} title="korrekt">
+    <input type="text" value="${escapeHtmlAttr(text)}" placeholder="Antworttext">
+    <button class="btn del needsAdmin">löschen</button>
+  `;
+  wrap.querySelector('.del').addEventListener('click', ()=> wrap.remove());
+  $('#answers').appendChild(wrap);
+}
+$('#btnAddAnswer').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  addAnswerRow();
+});
+$('#btnNew').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  setEditor(null);
+});
+$('#btnSave').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  const frage = $('#qText').value.trim();
+  const kategorie = $('#qCat').value.trim() || undefined;
+  const erk = $('#qHint').value.trim() || undefined;
+  const answers = Array.from($('#answers').children).map(row=>{
+    const [cb,tx] = row.querySelectorAll('input');
+    return {id:uid(), text:tx.value.trim(), korrekt:cb.checked};
+  }).filter(a=>a.text);
+  if(!frage || answers.length<2 || !answers.some(a=>a.korrekt)){
+    alert("Bitte Fragetext angeben, mindestens 2 Antworten, davon mindestens 1 korrekt.");
+    return;
+  }
+  if(EDIT.currentId){
+    const i = FRAGEN.findIndex(x=>x.id===EDIT.currentId);
+    if(i>=0){
+      FRAGEN[i].frage = frage;
+      FRAGEN[i].kategorie = kategorie;
+      FRAGEN[i].erklaerung = erk;
+      FRAGEN[i].antworten = answers;
+    }
+  }else{
+    FRAGEN.push({ id: uid(), frage, kategorie, erklaerung: erk, antworten: answers, leitnerBox:1, stats:{asked:0,correct:0,streak:0} });
+  }
+  saveActivePool(); renderList(); alert("Gespeichert.");
+});
+$('#btnDelete').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  if(!EDIT.currentId) return;
+  if(confirm("Diese Frage wirklich löschen?")){
+    FRAGEN = FRAGEN.filter(q=>q.id!==EDIT.currentId);
+    saveActivePool(); setEditor(null); renderList();
+  }
+});
+function renderList(){
+  if(!FRAGEN.length){ $('#listWrap').textContent = "Noch keine Fragen im aktiven Pool."; return; }
+  const rows = FRAGEN.map(q=>{
+    const corr = q.antworten.filter(a=>a.korrekt).length;
+    return `• <span>${escapeHtml((q.kategorie||""))}${q.kategorie?" – ":""}${escapeHtml(q.frage.slice(0,80))}</span> 
+      <span class="pill">${corr} korrekt</span>
+      <button class="btn" data-id="${q.id}">bearbeiten</button>`;
+  });
+  $('#listWrap').innerHTML = rows.join("<br>");
+  $('#listWrap').querySelectorAll('button[data-id]').forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const q = FRAGEN.find(x=>x.id===b.dataset.id);
+      setEditor(q);
+      $$('nav button').forEach(x=>x.classList.remove('active'));
+      $('nav button[data-tab="pool"]').classList.add('active');
+      $('#tab-pool').classList.add('active');
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+}
+/** ----------------------------
+ *  Bulk Import (in aktiven Pool)
+ *  ---------------------------- */
+function parseHtmlBulk(text, commonCat) {
+  // Entferne überflüssige Whitespace und leere Zeilen
+  const clean = text.trim();
+  if (!clean) return [];
+  // Teile nach <div>...</div> – berücksichtige auch mehrere DIVs
+  const divs = [...clean.matchAll(/<div[^>]*>([\s\S]*?)<\/div>/gi)];
+  if (!divs.length) return [];
+  const out = [];
+  for (const match of divs) {
+    const block = match[1];
+    // Frage extrahieren: erster <p> vor <ol>
+    const qMatch = block.match(/<p[^>]*>([\s\S]*?)<ol/i);
+    if (!qMatch) continue;
+    let frageHtml = qMatch[1].replace(/<[^>]+>/g, '').trim(); // strip tags
+    // Antworten aus <ol> extrahieren
+    const olMatch = block.match(/<ol[^>]*>([\s\S]*?)<\/ol>/i);
+    if (!olMatch) continue;
+    const liMatches = [...olMatch[1].matchAll(/<li[^>]*>([\s\S]*?)<\/li>/gi)];
+    const antworten = liMatches.map(m => m[1].replace(/<[^>]+>/g, '').trim());
+    if (antworten.length < 2) continue;
+    // Lösung aus <p class="answer"> extrahieren
+    const ansMatch = block.match(/<p[^>]*class\s*=\s*["']?answer["']?[^>]*>([\s\S]*?)<\/p>/i);
+    const correctLetters = new Set();
+    if (ansMatch) {
+      let ansText = ansMatch[1].replace(/<[^>]+>/g, '').trim();
+      // Extrahiere Buchstaben nach "Antwort:"
+      const letterMatch = ansText.match(/Antwort:\s*([A-Za-z,]+)/i);
+      if (letterMatch) {
+        const letters = letterMatch[1].split(',').map(l => l.trim().toUpperCase());
+        for (const L of letters) {
+          const idx = L.charCodeAt(0) - 'A'.charCodeAt(0);
+          if (idx >= 0 && idx < antworten.length) {
+            correctLetters.add(idx);
+          }
+        }
+      }
+    }
+    // Erstelle Frageobjekt
+    const fragenObj = {
+      id: uid(),
+      frage: frageHtml,
+      antworten: antworten.map((text, i) => ({
+        id: uid(),
+        text: text,
+        korrekt: correctLetters.has(i)
+      })),
+      kategorie: commonCat || undefined,
+      leitnerBox: 1,
+      stats: { asked: 0, correct: 0, streak: 0 }
+    };
+    out.push(fragenObj);
+  }
+  return out;
+}
+function parseBulk(text, commonCat) {
+  const trimmed = text.trim();
+  if (!trimmed) return [];
+  // Erkennung: Wenn <div> enthalten → HTML-Modus
+  if (/<div/i.test(trimmed)) {
+    return parseHtmlBulk(text, commonCat);
+  }
+  // Andernfalls: altes Freitext-Format
+  const blocks = text.split(/\n-{3,}\n/);
+  const out = [];
+  for (const block of blocks) {
+    const lines = block.split(/\n/).map(s => s.trim()).filter(Boolean);
+    if (!lines.length) continue;
+    const frage = lines.shift();
+    const antworten = [];
+    for (const line of lines) {
+      let korrekt = false, t = line;
+      if (/^\+ /.test(t)) { korrekt = true; t = t.replace(/^\+ /, ''); }
+      else if (/^\[x\]\s*/i.test(t)) { korrekt = true; t = t.replace(/^\[x\]\s*/i, ''); }
+      else if (/^\(x\)\s*/i.test(t)) { korrekt = true; t = t.replace(/^\(x\)\s*/i, ''); }
+      else if (/^[✔✅]\s*/.test(t)) { korrekt = true; t = t.replace(/^[✔✅]\s*/, ''); }
+      antworten.push({ id: uid(), text: t, korrekt });
+    }
+    if (antworten.filter(a => a.korrekt).length === 0) {
+      if (antworten.length) antworten[0].korrekt = true;
+    }
+    out.push({
+      id: uid(),
+      frage,
+      antworten,
+      kategorie: (commonCat || undefined),
+      leitnerBox: 1,
+      stats: { asked: 0, correct: 0, streak: 0 }
+    });
+  }
+  return out;
+}
+$('#btnParseBulk').addEventListener('click', ()=>{
+  const txt = $('#bulkText').value;
+  const cat = $('#bulkCat').value.trim();
+  const parsed = parseBulk(txt, cat);
+  if(!parsed.length){ $('#bulkPreview').textContent = "Keine Blöcke erkannt."; return; }
+  const lines = parsed.map(q=>{
+    const corr = q.antworten.filter(a=>a.korrekt).length;
+    const wrong = q.antworten.length-corr;
+    return `Q: ${q.frage}
+  ✔=${corr} ✗=${wrong}`;
+  });
+  $('#bulkPreview').textContent = lines.join('\n');
+});
+$('#btnImportBulk').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  if(!ACTIVE_POOL){ alert('Kein aktiver Pool.'); return; }
+  const txt = $('#bulkText').value;
+  const cat = $('#bulkCat').value.trim();
+  const parsed = parseBulk(txt, cat);
+  if(!parsed.length){ alert("Nichts zu importieren."); return; }
+  FRAGEN.push(...parsed);
+  saveActivePool(); renderList();
+  alert(`Importiert: ${parsed.length} Fragen in Pool "${ACTIVE_POOL.name}".`);
+});
+/** ----------------------------
+ *  Import/Export – Alle Pools (Data + Admin)
+ *  ---------------------------- */
+function exportAllPools(){
+  const idx = listPools();
+  const out = {};
+  for(const name of idx){
+    const data = loadPoolData(name);
+    if(data) out[name] = data;
+  }
+  const blob = new Blob([JSON.stringify(out, null, 2)], {type:'application/json'});
+  const url = URL.createObjectURL(blob);
+  const a = $('#downloadLink');
+  a.href = url; a.download = 'trainer_export.json'; a.textContent = 'Jetzt herunterladen';
+}
+$('#btnExportAllPools').addEventListener('click', exportAllPools);
+$('#btnAdminExport').addEventListener('click', exportAllPools);
+function importAllPoolsFromFile(inputEl){
+  const f = inputEl.files[0];
+  if(!f) { alert("Bitte JSON-Datei auswählen."); return; }
+  const rd = new FileReader();
+  rd.onload = ()=>{
+    try{
+      const obj = JSON.parse(rd.result);
+      if(typeof obj!=='object' || Array.isArray(obj)) throw new Error("Kein Objekt (name→pool).");
+      for(const [name,data] of Object.entries(obj)){
+        if(data?.fragen || data?.questions || Array.isArray(data)){ // Akzeptiere mehrere Formate
+          let poolObj;
+          if(Array.isArray(data)){ // direktes Fragenarray
+            poolObj = { name, version:'v9', created: now(), fragen: convertMaybeV7Array(data) };
+          }else if(Array.isArray(data.fragen)){
+            poolObj = { name: data.name||name, version:'v9', created: data.created||now(), fragen: convertMaybeV7Array(data.fragen) };
+          }else if(Array.isArray(data.questions)){
+            poolObj = { name: data.name||name, version:'v9', created: now(), fragen: convertFromV112(data.questions) };
+          }
+          if(poolObj){ savePoolData(poolObj.name, poolObj); }
+        }
+      }
+      const idx = listPools();
+      if(idx.length) setActivePool(idx[0]);
+      alert("Import aller Pools abgeschlossen.");
+    }catch(e){ alert("Fehler beim Import: "+e.message); }
+  };
+  rd.readAsText(f);
+}
+$('#btnImportAll').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  importAllPoolsFromFile($('#fileImportAll'));
+});
+$('#btnAdminImport').addEventListener('click', ()=> $('#adminImportFile').click());
+$('#adminImportFile').addEventListener('change', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  importAllPoolsFromFile($('#adminImportFile'));
+});
+$('#btnWipeAll').addEventListener('click', ()=>{
+  if(!isAdmin) return alert('Admin gesperrt.');
+  if(!confirm("Wirklich ALLE Pools & Daten löschen?")){
+    return;
+  }
+  // löschen
+  const idx = listPools();
+  for(const name of idx){ deletePoolData(name); }
+  savePoolIndex([]);
+  localStorage.removeItem(KEY_LEGACY);
+  ACTIVE_POOL = null; FRAGEN = [];
+  // Default wieder anlegen
+  createDefaultPool();
+  renderList(); startTraining(false); renderLeitnerStats(); renderAdminStats();
+});
+/** ----------------------------
+ *  Hotkeys (v1.8‑Style)
+ *  ---------------------------- */
+function activeTab(){ return $$('section.active')[0]?.id || ""; }
+function keyTargetIsForm(e){
+  const tag = (e.target?.tagName||"").toUpperCase();
+  return tag==='INPUT' || tag==='TEXTAREA' || e.target?.isContentEditable;
+}
+function toggleNthCheckbox(containerSel, n){
+  const boxes = Array.from(document.querySelectorAll(containerSel+' .answers input[type="checkbox"]'));
+  const idx = n-1;
+  if(idx>=0 && idx<boxes.length){ boxes[idx].checked = !boxes[idx].checked; boxes[idx].dispatchEvent(new Event('change', {bubbles:true})); }
+}
+document.addEventListener('keydown', (e)=>{
+  if(keyTargetIsForm(e)) return;
+  const tab = activeTab();
+  const code = e.code;
+  if(code.startsWith('Digit')){
+    let num = parseInt(code.replace('Digit',''),10);
+    if(num===0) num=10;
+    if(tab==='tab-train'){ toggleNthCheckbox('#trainQuestionWrap', num); }
+    if(tab==='tab-exam'){ toggleNthCheckbox('#examQuestionWrap', num); storeExamCurrent(); }
+  }
+  if(code==='ArrowRight' || code==='KeyN' || code===']'){
+    e.preventDefault();
+    if(tab==='tab-train') $('#btnTrainNext')?.click();
+    if(tab==='tab-exam') $('#btnExamNext')?.click();
+  }
+  if(code==='ArrowLeft' || code==='KeyP' || code==='['){
+    e.preventDefault();
+    if(tab==='tab-train') $('#btnTrainPrev')?.click();
+    if(tab==='tab-exam') $('#btnExamPrev')?.click();
+  }
+  if(code==='KeyC'){
+    if(tab==='tab-train'){ e.preventDefault(); $('#btnTrainCheck')?.click(); }
+  }
+  if(code==='Enter'){
+    if(tab==='tab-train'){ e.preventDefault(); $('#btnTrainNext')?.click(); }
+    if(tab==='tab-exam'){ e.preventDefault(); $('#btnExamNext')?.click(); }
+  }
+  if(code==='KeyE'){
+    if(tab==='tab-exam'){ e.preventDefault(); $('#btnExamSubmit')?.click(); }
+  }
+});
+/** ----------------------------
+ *  Utils
+ *  ---------------------------- */
+function escapeHtml(s){ return (s??"").replace(/[&<>"']/g, m=>({ "&":"&amp;", "<":"<", ">":">", '"':"&quot;", "'":"&#39;" }[m])); }
+function escapeHtmlAttr(s){ return escapeHtml(s).replace(/"/g, '&quot;'); }
+function formatDuration(ms){ const sec = Math.max(0, Math.round(ms/1000)); const m = Math.floor(sec/60), s = sec%60; return `${m}m ${String(s).padStart(2,'0')}s`; }
+function renderAdminStats(){
+  const total = FRAGEN.length;
+  const asked = FRAGEN.reduce((a,q)=>a+(q.stats?.asked||0),0);
+  const correct = FRAGEN.reduce((a,q)=>a+(q.stats?.correct||0),0);
+  $('#adminStats').textContent = `Aktiver Pool: ${ACTIVE_POOL?.name||'–'}
+Fragen: ${total}
+Gesamt beantwortet: ${asked}
+Davon korrekt: ${correct}`;
+}
+function ensureDefaults(){
+  for(const q of FRAGEN){
+    q.id ||= uid();
+    q.leitnerBox ||= 1;
+    q.stats ||= {asked:0, correct:0, streak:0};
+    for(const a of q.antworten){ a.id ||= uid(); }
+  }
+}
+function createDefaultPool(){
+  const demo = [{
+    id: uid(),
+    frage: "Welche Aussagen zu IPv6 treffen zu?",
+    antworten:[
+      {id:uid(), text:"IPv6 verwendet 128-bit Adressen.", korrekt:true},
+      {id:uid(), text:"IPv6 nutzt ausschließlich Broadcasts.", korrekt:false},
+      {id:uid(), text:"Link-Local beginnt mit fe80::/10.", korrekt:true},
+      {id:uid(), text:"NAT ist zwingend vorgeschrieben.", korrekt:false},
+    ],
+    erklaerung: "IPv6 = 128-bit, Link-Local fe80::/10. Broadcast entfällt (Multicast). NAT nicht obligatorisch.",
+    kategorie: "Netzwerke",
+    leitnerBox: 1,
+    stats:{asked:0, correct:0, streak:0}
+  }];
+  const obj = { name:'Standard‑Pool', version:'v9', created: now(), fragen: demo };
+  savePoolData(obj.name, obj);
+  setActivePool(obj.name);
+}
+/** ----------------------------
+ *  Boot (Migration + Erst-Setup)
+ *  ---------------------------- */
+(function boot(){
+  updateAdminUI();
+  // Migration: falls alter FRAGEN‑Key genutzt wurde und keine Pools existieren
+  const pools = listPools();
+  if(pools.length===0){
+    let migrated = null;
+    try{
+      const raw = localStorage.getItem(KEY_LEGACY);
+      if(raw){
+        const arr = JSON.parse(raw);
+        if(Array.isArray(arr) && arr.length){
+          migrated = convertMaybeV7Array(arr);
+          // einmalig löschen wir den Legacy‑Key nicht automatisch; behalten als Backup
+          const obj = { name:'Migriert', version:'v9', created: now(), fragen: migrated };
+          savePoolData(obj.name, obj);
+        }
+      }
+    }catch{}
+    if(migrated){ setActivePool('Migriert'); }
+    else { createDefaultPool(); }
+  }else{
+    setActivePool(pools[0]);
+  }
+  refreshPoolSelect(ACTIVE_POOL?.name);
+  renderAdminStats();
+})();
+</script>
+</body>
+</html>

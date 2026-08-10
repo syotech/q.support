@@ -1,0 +1,3974 @@
+{
+  "name": "sisco ccna 116",
+  "version": "v9",
+  "created": 1786014660101,
+  "fragen": [
+    {
+      "id": "cb7fq5qf",
+      "frage": "Q1.Which factor determines TCP window size?",
+      "antworten": [
+        {
+          "id": "2bpyfmr2",
+          "text": "A.\tthe amount of data to be transmitted",
+          "korrekt": false
+        },
+        {
+          "id": "gk8ujda5",
+          "text": "B.\tthe number of services included in the TCP segment",
+          "korrekt": false
+        },
+        {
+          "id": "xqxqxlir",
+          "text": "C.\tthe amount of data the destination can process at one time",
+          "korrekt": true
+        },
+        {
+          "id": "ept2pdoq",
+          "text": "D.\tthe amount of data the source is capable of sending at one time",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 4,
+      "stats": {
+        "asked": 8,
+        "correct": 4,
+        "streak": 3,
+        "lastSeen": 1786098703062,
+        "lastResult": "richtig"
+      }
+    },
+    {
+      "id": "8eni6g84",
+      "frage": "Q2 .A PC is downloading a large file from a server. The TCP window is 1000 bytes. The server is sending the file \nusing 100-byte segments. How many segments will the server send before it requires an acknowledgment \nfrom the PC?",
+      "antworten": [
+        {
+          "id": "cnc8mp6u",
+          "text": "A. 1 segment",
+          "korrekt": false
+        },
+        {
+          "id": "cfg0qh44",
+          "text": "B. 10 segments",
+          "korrekt": true
+        },
+        {
+          "id": "9841ves0",
+          "text": "C. 100 segments",
+          "korrekt": false
+        },
+        {
+          "id": "fn9fiuvv",
+          "text": "D. 1000 segments",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 5,
+      "stats": {
+        "asked": 5,
+        "correct": 4,
+        "streak": 4,
+        "lastSeen": 1786098722673,
+        "lastResult": "richtig"
+      }
+    },
+    {
+      "id": "uuvo7rl5",
+      "frage": "Q3 .What does a client do when it has UDP datagrams to send?",
+      "antworten": [
+        {
+          "id": "a0ug4lbn",
+          "text": "A. It just sends the datagrams.",
+          "korrekt": true
+        },
+        {
+          "id": "dmm5hzgb",
+          "text": "B. It queries the server to see if it is ready to receive data.",
+          "korrekt": false
+        },
+        {
+          "id": "0hs2snv4",
+          "text": "C. It sends a simplified three-way handshake to the server.",
+          "korrekt": false
+        },
+        {
+          "id": "u65l0ml4",
+          "text": "D. It sends to the server a segment with the SYN flag set to synchronize the conversation.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 5,
+      "stats": {
+        "asked": 4,
+        "correct": 4,
+        "streak": 4,
+        "lastSeen": 1786098889672,
+        "lastResult": "richtig"
+      }
+    },
+    {
+      "id": "n8ye7is9",
+      "frage": "Q4 .Which three fields are used in a UDP segment header? (Choose three.)",
+      "antworten": [
+        {
+          "id": "dpteas4a",
+          "text": "A. Window Size",
+          "korrekt": false
+        },
+        {
+          "id": "wg307toz",
+          "text": "B. Length",
+          "korrekt": true
+        },
+        {
+          "id": "wlav2ioe",
+          "text": "C. Source Port",
+          "korrekt": true
+        },
+        {
+          "id": "0n83w7y4",
+          "text": "D. Acknowledgment Number",
+          "korrekt": false
+        },
+        {
+          "id": "yx77t1ha",
+          "text": "E. Checksum",
+          "korrekt": true
+        },
+        {
+          "id": "8939aqgh",
+          "text": "F. Sequence Number",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 5,
+      "stats": {
+        "asked": 4,
+        "correct": 4,
+        "streak": 4,
+        "lastSeen": 1786098921678,
+        "lastResult": "richtig"
+      }
+    },
+    {
+      "id": "1i2ifo15",
+      "frage": "Q5 .What are two roles of the transport layer in data communication on a network? (Choose two.)",
+      "antworten": [
+        {
+          "id": "d5nz5q1a",
+          "text": "A. identifying the proper application for each communication stream",
+          "korrekt": true
+        },
+        {
+          "id": "fmk8r0zo",
+          "text": "B. tracking the individual communication between applications on the source and destination hosts",
+          "korrekt": true
+        },
+        {
+          "id": "ifce24ct",
+          "text": "C. providing frame delimiting to identify bits making up a frame",
+          "korrekt": false
+        },
+        {
+          "id": "0jok3r8l",
+          "text": "D. performing a cyclic redundancy check on the frame for errors",
+          "korrekt": false
+        },
+        {
+          "id": "dv5ld7bz",
+          "text": "E. providing the interface between applications and the underlying network over which messages are transmitted",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "lv5j3c1l",
+      "frage": "Q6 .What information is used by TCP to reassemble and reorder received segments?",
+      "antworten": [
+        {
+          "id": "cyswduqp",
+          "text": "A. port numbers",
+          "korrekt": false
+        },
+        {
+          "id": "0efweot0",
+          "text": "B. sequence numbers",
+          "korrekt": true
+        },
+        {
+          "id": "gj32gwgh",
+          "text": "C. acknowledgment numbers",
+          "korrekt": false
+        },
+        {
+          "id": "zpp34rz4",
+          "text": "D. fragment numbers",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "9v9ntxp8",
+      "frage": "Q7 What important information is added to the TCP/IP transport layer header to ensure communication and \nconnectivity with a remote network device?",
+      "antworten": [
+        {
+          "id": "3m54dfeg",
+          "text": "• timing and synchronization",
+          "korrekt": false
+        },
+        {
+          "id": "b2loqbkm",
+          "text": "• destination and source port numbers",
+          "korrekt": true
+        },
+        {
+          "id": "veu612jr",
+          "text": "• destination and source physical addresses",
+          "korrekt": false
+        },
+        {
+          "id": "wljdbhh4",
+          "text": "• destination and source logical network addresses",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "5fp3suep",
+      "frage": "Q8 Which two characteristics are associated with UDP sessions? (Choose two.)",
+      "antworten": [
+        {
+          "id": "8w3b7qa7",
+          "text": "• Destination devices receive traffic with minimal delay.",
+          "korrekt": true
+        },
+        {
+          "id": "oxj2efom",
+          "text": "• Transmitted data segments are tracked.",
+          "korrekt": false
+        },
+        {
+          "id": "ej7gw57y",
+          "text": "• Destination devices reassemble messages and pass them to an application.",
+          "korrekt": false
+        },
+        {
+          "id": "v1ume8zi",
+          "text": "• Received data is unacknowledged.",
+          "korrekt": true
+        },
+        {
+          "id": "xa6y8vpu",
+          "text": "• Unacknowledged data packets are retransmitted.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "29ffj91s",
+      "frage": "Q9 .A client application needs to terminate a TCP communication session with a server. Place the termination \nprocess steps in the order that they will occur. (Not all options are used.) \nStep 1 Client sends ACK \nStep 2 Client sends FIN \nStep 3 Client sends SYN \nStep 4 Server sends ACK \nServer sends FIN \nServer sends SYN",
+      "antworten": [
+        {
+          "id": "1z713w1z",
+          "text": "Step 1 -------------Client sends FIN",
+          "korrekt": true
+        },
+        {
+          "id": "wxljzui4",
+          "text": "Step 2 ------------Server sends ACK",
+          "korrekt": true
+        },
+        {
+          "id": "1u9u7wku",
+          "text": "Step 3 ------------Server sends FIN",
+          "korrekt": true
+        },
+        {
+          "id": "emqqxg2b",
+          "text": "Step 4------------- Client sends ACK",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "7tafo606",
+      "frage": "Q10 .Which flag in the TCP header is used in response to a received FIN in order to terminate connectivity \nbetween two network devices?",
+      "antworten": [
+        {
+          "id": "a9d6m5hd",
+          "text": "• FIN",
+          "korrekt": false
+        },
+        {
+          "id": "0fmg0aky",
+          "text": "• ACK",
+          "korrekt": true
+        },
+        {
+          "id": "7gdcm5e6",
+          "text": "• SYN",
+          "korrekt": false
+        },
+        {
+          "id": "2ezld7ot",
+          "text": "• RST",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "sy8gjyg5",
+      "frage": "Q11.Which protocol or service uses UDP for a client-to-server communication and TCP for server-to-server \ncommunication?",
+      "antworten": [
+        {
+          "id": "rzbizdr6",
+          "text": "• HTTP",
+          "korrekt": false
+        },
+        {
+          "id": "trwnuugg",
+          "text": "• FTP",
+          "korrekt": false
+        },
+        {
+          "id": "qw44c5ux",
+          "text": "• DNS (Delegierung, wenn ein DNS die Anfrage eines Clients nicht beantworten)",
+          "korrekt": true
+        },
+        {
+          "id": "blontwrt",
+          "text": "• SMTP",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "4yqtz7nv",
+      "frage": "Q12 .What is a characteristic of UDP?",
+      "antworten": [
+        {
+          "id": "c0j060di",
+          "text": "• UDP datagrams take the same path and arrive in the correct order at the destination.",
+          "korrekt": false
+        },
+        {
+          "id": "c3wb9u9y",
+          "text": "• Applications that use UDP are always considered unreliable.",
+          "korrekt": true
+        },
+        {
+          "id": "elc7fxtl",
+          "text": "• UDP reassembles the received datagrams in the order they were received.",
+          "korrekt": false
+        },
+        {
+          "id": "qph65ipo",
+          "text": "• UDP only passes data to the network when the destination is ready to receive the data.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "1a1nqsn4",
+      "frage": "Q13 .What kind of port must be requested from IANA in order to be used with a specific application?",
+      "antworten": [
+        {
+          "id": "haldy68x",
+          "text": "• registered port (Well-Known-Ports, Ports 0 bis 1023)",
+          "korrekt": true
+        },
+        {
+          "id": "9oknhasr",
+          "text": "• private port",
+          "korrekt": false
+        },
+        {
+          "id": "xsdac4hd",
+          "text": "• dynamic port",
+          "korrekt": false
+        },
+        {
+          "id": "v79tlign",
+          "text": "• source port",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "kr5a5bel",
+      "frage": "Q14 .Which two fields are included in the TCP header but not in the UDP header? (Choose two.)",
+      "antworten": [
+        {
+          "id": "fbmlf4oy",
+          "text": "• window",
+          "korrekt": true
+        },
+        {
+          "id": "k541waz3",
+          "text": "• checksum",
+          "korrekt": false
+        },
+        {
+          "id": "t0u4b08q",
+          "text": "• source port",
+          "korrekt": false
+        },
+        {
+          "id": "tzde8ipj",
+          "text": "• destination port",
+          "korrekt": false
+        },
+        {
+          "id": "ue7gtmxx",
+          "text": "• sequence number",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "wtl956t7",
+      "frage": "Q15 .Which three statements characterize UDP? (Choose three.)",
+      "antworten": [
+        {
+          "id": "bvu4dl28",
+          "text": "• UDP provides basic connectionless transport layer functions.",
+          "korrekt": true
+        },
+        {
+          "id": "y03ieh7h",
+          "text": "• UDP provides connection-oriented, fast transport of data at Layer 3.",
+          "korrekt": false
+        },
+        {
+          "id": "npc9iigb",
+          "text": "• UDP relies on application layer protocols for error detection.",
+          "korrekt": true
+        },
+        {
+          "id": "d02kra3x",
+          "text": "• UDP is a low overhead protocol that does not provide sequencing or flow control mechanisms.",
+          "korrekt": true
+        },
+        {
+          "id": "mzec89hs",
+          "text": "• UDP relies on IP for error detection and recovery.",
+          "korrekt": false
+        },
+        {
+          "id": "kr10e2ji",
+          "text": "• UDP provides sophisticated flow control mechanisms.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "luyl7445",
+      "frage": "Q16 .Why does HTTP use TCP as the transport layer protocol?",
+      "antworten": [
+        {
+          "id": "1oq5uzao",
+          "text": "• to ensure the fastest possible download speed",
+          "korrekt": false
+        },
+        {
+          "id": "y7ur8qdx",
+          "text": "• because HTTP is a best-effort protocol",
+          "korrekt": false
+        },
+        {
+          "id": "dkaevjx6",
+          "text": "• because transmission errors can be tolerated easily",
+          "korrekt": false
+        },
+        {
+          "id": "n8bh87a0",
+          "text": "• because HTTP requires reliable delivery",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "n3wva3cx",
+      "frage": "Q17 Which two types of applications are best suited for UDP? (Choose two.)",
+      "antworten": [
+        {
+          "id": "br8dpy4l",
+          "text": "• applications that need data flow control",
+          "korrekt": false
+        },
+        {
+          "id": "yofg48ut",
+          "text": "• applications that require reliable delivery",
+          "korrekt": false
+        },
+        {
+          "id": "8crripk7",
+          "text": "• applications that handle reliability themselves",
+          "korrekt": true
+        },
+        {
+          "id": "i7mcvouo",
+          "text": "• applications that need the reordering of segments",
+          "korrekt": false
+        },
+        {
+          "id": "wp5gso0o",
+          "text": "• applications that can tolerate some data loss, but require little or no delay",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "1v7jquai",
+      "frage": "Q18 How are port numbers used in the TCP/IP encapsulation process?",
+      "antworten": [
+        {
+          "id": "aufv5js0",
+          "text": "• Source port numbers and destination port numbers are not necessary when UDP is the transport layer protocol being used  for the communication.",
+          "korrekt": false
+        },
+        {
+          "id": "4a2brucp",
+          "text": "• Source port and destination port numbers are randomly generated.",
+          "korrekt": false
+        },
+        {
+          "id": "myhehb4d",
+          "text": "• If multiple conversations occur that are using the same service, the source port number is used to track the separate  conversations.",
+          "korrekt": true
+        },
+        {
+          "id": "vghi9pbl",
+          "text": "• Destination port numbers are assigned automatically and cannot be changed.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "vscwxeuo",
+      "frage": "Q19 In what two situations would UDP be better than TCP as the preferred transport protocol? (Choose two.)",
+      "antworten": [
+        {
+          "id": "4f6h64j6",
+          "text": "• when applications need to guarantee that a packet arrives intact, in sequence, and unduplicated",
+          "korrekt": false
+        },
+        {
+          "id": "s3t7zuua",
+          "text": "• when a faster delivery mechanism is needed",
+          "korrekt": true
+        },
+        {
+          "id": "raxdghct",
+          "text": "• when delivery overhead is not an issue",
+          "korrekt": false
+        },
+        {
+          "id": "03rckbiy",
+          "text": "• when applications do not need to guarantee delivery of the data",
+          "korrekt": true
+        },
+        {
+          "id": "si9qe480",
+          "text": "• when destination port numbers are dynamic",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "st2b78vk",
+      "frage": "Q20 What are three responsibilities of the transport layer? (Choose three.)",
+      "antworten": [
+        {
+          "id": "7awx3jfp",
+          "text": "• meeting the reliability requirements of applications, if any",
+          "korrekt": true
+        },
+        {
+          "id": "33f2drhk",
+          "text": "• multiplexing multiple communication streams from many users or applications on the same network",
+          "korrekt": true
+        },
+        {
+          "id": "pcsiv77u",
+          "text": "• identifying the applications and services on the client and server that should handle transmitted data",
+          "korrekt": true
+        },
+        {
+          "id": "gmxn1l6u",
+          "text": "• directing packets towards the destination network",
+          "korrekt": false
+        },
+        {
+          "id": "p5kwtqn1",
+          "text": "• formatting data into a compatible form for receipt by the destination devices",
+          "korrekt": false
+        },
+        {
+          "id": "25lldyzl",
+          "text": "• conducting error detection of the contents in frames",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "ewbkfdj8",
+      "frage": "Q21 Which three statements describe a DHCP Discover message? (Choose three.)",
+      "antworten": [
+        {
+          "id": "pulaja39",
+          "text": "• The source MAC address is 48 ones (FF-FF-FF-FF-FF-FF).",
+          "korrekt": false
+        },
+        {
+          "id": "nkt579td",
+          "text": "• The destination IP address is 255.255.255.255.",
+          "korrekt": true
+        },
+        {
+          "id": "4cybyxhs",
+          "text": "• The message comes from a server offering an IP address.",
+          "korrekt": false
+        },
+        {
+          "id": "uxg4a60a",
+          "text": "• The message comes from a client seeking an IP address.",
+          "korrekt": true
+        },
+        {
+          "id": "2enm2omj",
+          "text": "• All hosts receive the message, but only a DHCP server replies.",
+          "korrekt": true
+        },
+        {
+          "id": "ib2x3xfa",
+          "text": "• Only the DHCP server receives the message.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "zsd3arnz",
+      "frage": "Q22 What is the function of the HTTP GET message?",
+      "antworten": [
+        {
+          "id": "hwjjszpl",
+          "text": "• to request an HTML page from a web server",
+          "korrekt": true
+        },
+        {
+          "id": "nz1b74hg",
+          "text": "• to send error information from a web server to a web client",
+          "korrekt": false
+        },
+        {
+          "id": "u53jgrde",
+          "text": "• to upload content to a web server from a web client",
+          "korrekt": false
+        },
+        {
+          "id": "jbie6ypy",
+          "text": "• to retrieve client email from an email server using TCP port 110",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "wqwyzh7h",
+      "frage": "Q23 What do the client/server and peer-to-peer network models have in common?",
+      "antworten": [
+        {
+          "id": "6nxpzjyn",
+          "text": "• Both models have dedicated servers.",
+          "korrekt": false
+        },
+        {
+          "id": "dgz4yz0j",
+          "text": "• Both models support devices in server and client roles.",
+          "korrekt": true
+        },
+        {
+          "id": "lzbvhe86",
+          "text": "• Both models require the use of TCP/IP-based protocols.",
+          "korrekt": false
+        },
+        {
+          "id": "n1jhgvze",
+          "text": "• Both models are used only in the wired network environment.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "nfz7m0ak",
+      "frage": "Q24 Which OSI layer provides the interface (Application Layer Programming Interfaces, APIs) between the \napplications used to communicate and the underlying network over which messages are transmitted?",
+      "antworten": [
+        {
+          "id": "mdrrg7q3",
+          "text": "• application",
+          "korrekt": true
+        },
+        {
+          "id": "a4n8ug4t",
+          "text": "• presentation",
+          "korrekt": false
+        },
+        {
+          "id": "t9v6qwic",
+          "text": "• session",
+          "korrekt": false
+        },
+        {
+          "id": "m8qwcip3",
+          "text": "• transport",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "clwaam19",
+      "frage": "Q25 In what networking model would eDonkey, eMule, BitTorrent, Bitcoin, and LionShare be used?",
+      "antworten": [
+        {
+          "id": "c4qsh6y5",
+          "text": "• peer-to-peer",
+          "korrekt": true
+        },
+        {
+          "id": "kouz3pv9",
+          "text": "• client-based",
+          "korrekt": false
+        },
+        {
+          "id": "vytnydww",
+          "text": "• master-slave",
+          "korrekt": false
+        },
+        {
+          "id": "xg73mzg2",
+          "text": "• point-to-point",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "lg40vk5s",
+      "frage": "Q26.Which networking model is being used when an author uploads one chapter document to a file server of a \nbook publisher?",
+      "antworten": [
+        {
+          "id": "4o0mztjy",
+          "text": "• peer-to-peer",
+          "korrekt": false
+        },
+        {
+          "id": "m8nztneo",
+          "text": "• master-slave",
+          "korrekt": false
+        },
+        {
+          "id": "hawdza72",
+          "text": "• client/server",
+          "korrekt": true
+        },
+        {
+          "id": "fhn4xsiu",
+          "text": "• point-to-point",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "2g1n7koi",
+      "frage": "Q27 .What is a key characteristic of the peer-to-peer networking model?",
+      "antworten": [
+        {
+          "id": "wxl72tn8",
+          "text": "• Wireless networking",
+          "korrekt": false
+        },
+        {
+          "id": "lsfu30fc",
+          "text": "• Social networking without the Internet",
+          "korrekt": false
+        },
+        {
+          "id": "acofw75a",
+          "text": "• Network printing using a print server",
+          "korrekt": false
+        },
+        {
+          "id": "19obpvvo",
+          "text": "• resource sharing without a dedicated server",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "q2349ye7",
+      "frage": "Q28 The application layer of the TCP/IP model performs the functions of what three layers of the OSI model? \n(Choose three.)",
+      "antworten": [
+        {
+          "id": "whulggzt",
+          "text": "• physical",
+          "korrekt": false
+        },
+        {
+          "id": "bbtomgrt",
+          "text": "• session",
+          "korrekt": true
+        },
+        {
+          "id": "54xxqkhq",
+          "text": "• network",
+          "korrekt": false
+        },
+        {
+          "id": "3nglq0ds",
+          "text": "• presentation",
+          "korrekt": true
+        },
+        {
+          "id": "yp8we09w",
+          "text": "• data link",
+          "korrekt": false
+        },
+        {
+          "id": "2897otur",
+          "text": "• transport",
+          "korrekt": false
+        },
+        {
+          "id": "gc5qanfa",
+          "text": "• application",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "qxa5m06f",
+      "frage": "Q29 .Which layer in the TCP/IP model is used for formatting, compressing, and encrypting data?",
+      "antworten": [
+        {
+          "id": "ak6zj0dw",
+          "text": "• internetwork",
+          "korrekt": false
+        },
+        {
+          "id": "3olzjhit",
+          "text": "• session",
+          "korrekt": false
+        },
+        {
+          "id": "mcw9dyjo",
+          "text": "• presentation",
+          "korrekt": false
+        },
+        {
+          "id": "0lrf8deu",
+          "text": "• application",
+          "korrekt": true
+        },
+        {
+          "id": "4xiena4q",
+          "text": "• network access",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "08kd6eei",
+      "frage": "Q30 .What is an example of network communication that uses the client-server model?",
+      "antworten": [
+        {
+          "id": "bq5kiek6",
+          "text": "• A user uses eMule to download a file that is shared by a friend after the file location is determined.",
+          "korrekt": false
+        },
+        {
+          "id": "hu8h73ij",
+          "text": "• A workstation initiates an ARP to find the MAC address of a receiving host.",
+          "korrekt": false
+        },
+        {
+          "id": "udhaax5x",
+          "text": "• A user prints a document by using a printer that is attached to a workstation of a coworker.",
+          "korrekt": false
+        },
+        {
+          "id": "hc3hz4ke",
+          "text": "• A workstation initiates a DNS request when the user types www.cisco.com in the address bar of a web browser.",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "zwut3z7o",
+      "frage": "Q31 Which application layer protocol uses message types such as GET, PUT, and POST?",
+      "antworten": [
+        {
+          "id": "blsf3t3o",
+          "text": "• DNS",
+          "korrekt": false
+        },
+        {
+          "id": "fe9f97g2",
+          "text": "• DHCP",
+          "korrekt": false
+        },
+        {
+          "id": "5b15gewi",
+          "text": "• SMTP",
+          "korrekt": false
+        },
+        {
+          "id": "3igoowd7",
+          "text": "• HTTP",
+          "korrekt": true
+        },
+        {
+          "id": "st263oab",
+          "text": "• POP3",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "vjuz59lt",
+      "frage": "Q32 What type of information is contained in a DNS MX record?",
+      "antworten": [
+        {
+          "id": "0vvrylky",
+          "text": "• the FQDN of the alias used to identify a service",
+          "korrekt": false
+        },
+        {
+          "id": "v3g56f02",
+          "text": "• the IP address for an FQDN entry",
+          "korrekt": false
+        },
+        {
+          "id": "tadoptdw",
+          "text": "• the domain name mapped to mail exchange servers",
+          "korrekt": true
+        },
+        {
+          "id": "6xoweflf",
+          "text": "• the IP address of an authoritative name server",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "0jxeblsp",
+      "frage": "Q33 Which applications or services allow hosts to act as client and server at the same time?",
+      "antworten": [
+        {
+          "id": "9f0261sx",
+          "text": "• client/server applications",
+          "korrekt": false
+        },
+        {
+          "id": "klki6ygo",
+          "text": "• email applications",
+          "korrekt": false
+        },
+        {
+          "id": "zhhlh082",
+          "text": "• P2P applications",
+          "korrekt": true
+        },
+        {
+          "id": "cknwk4z9",
+          "text": "• authentication services",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "eumimd0e",
+      "frage": "Q34 Which scenario describes a function provided by the transport layer?",
+      "antworten": [
+        {
+          "id": "7ozkq2c9",
+          "text": "• A student is using a classroom VoIP phone to call home. The unique identifier burned into the phone is a transport layer  address used to contact another network device on the same network.",
+          "korrekt": false
+        },
+        {
+          "id": "vd40aqq9",
+          "text": "• A student is playing a short web-based movie with sound. The movie and sound are encoded within the transport layer  header.",
+          "korrekt": false
+        },
+        {
+          "id": "g0gfsse4",
+          "text": "•  A student has two web browser windows open in order to access two web sites. The transport layer ensures the correct web  page is delivered to the correct browser window.",
+          "korrekt": true
+        },
+        {
+          "id": "82lup3im",
+          "text": "• A corporate worker is accessing a web server located on a corporate network. The transport layer formats the screen so the  web page appears properly no matter what device is being used to view the web site.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "om50mhfv",
+      "frage": "Q35 .A PC that is communicating with a web server has a TCP window size of 6,000 bytes when sending data \nand a packet size of 1,500 bytes. Which byte of information will the web server acknowledge after it has \nreceived two packets of data from the PC?",
+      "antworten": [
+        {
+          "id": "r6wlaed6",
+          "text": "• 3001",
+          "korrekt": true
+        },
+        {
+          "id": "gn1fghaf",
+          "text": "• 6001",
+          "korrekt": false
+        },
+        {
+          "id": "sj6yxnho",
+          "text": "• 4500",
+          "korrekt": false
+        },
+        {
+          "id": "p5getax2",
+          "text": "• 6000",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "m55hksex",
+      "frage": "Q36 A PC that is communicating with a web server has a TCP window size of 6,000 bytes when sending data \nand a packet size of 1,500 bytes. Which byte of information will the web server acknowledge after it has \nreceived three packets of data from the PC?",
+      "antworten": [
+        {
+          "id": "qpak148f",
+          "text": "• 4501",
+          "korrekt": true
+        },
+        {
+          "id": "pk1vmrox",
+          "text": "• 6001",
+          "korrekt": false
+        },
+        {
+          "id": "frqdq6i2",
+          "text": "• 6000",
+          "korrekt": false
+        },
+        {
+          "id": "wbmus1t2",
+          "text": "• 4500",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "xscvjjoz",
+      "frage": "Q37 .A PC that is communicating with a web server has a TCP window size of 6,000 bytes when sending data \nand a packet size of 1,500 bytes. Which byte of information will the web server acknowledge after it has \nreceived four packets of data from the PC?",
+      "antworten": [
+        {
+          "id": "tmvon0r0",
+          "text": "• 6001",
+          "korrekt": true
+        },
+        {
+          "id": "1q0oilvs",
+          "text": "• 3001",
+          "korrekt": false
+        },
+        {
+          "id": "gxda9l1b",
+          "text": "• 1501",
+          "korrekt": false
+        },
+        {
+          "id": "odwrnnuv",
+          "text": "• 1500",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "c8nio2qx",
+      "frage": "Q38 A client creates a packet to send to a server. The client is requesting TFTP service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "ruf0qvem",
+          "text": "• 69",
+          "korrekt": true
+        },
+        {
+          "id": "yp3tlmpe",
+          "text": "• 67",
+          "korrekt": false
+        },
+        {
+          "id": "w81t3b17",
+          "text": "• 53",
+          "korrekt": false
+        },
+        {
+          "id": "5yq264aa",
+          "text": "• 80",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "g7r1shfl",
+      "frage": "Q39 .A client creates a packet to send to a server. The client is requesting FTP service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "el5fzrov",
+          "text": "• 21",
+          "korrekt": true
+        },
+        {
+          "id": "1f8tudh8",
+          "text": "• 69",
+          "korrekt": false
+        },
+        {
+          "id": "gqfjusj7",
+          "text": "• 67",
+          "korrekt": false
+        },
+        {
+          "id": "luobfzq1",
+          "text": "• 80",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "owgs22nw",
+      "frage": "Q40 .A client creates a packet to send to a server. The client is requesting SSH service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "3c7c04p1",
+          "text": "• 22",
+          "korrekt": true
+        },
+        {
+          "id": "cwk1smlp",
+          "text": "• 69",
+          "korrekt": false
+        },
+        {
+          "id": "ru7rqer1",
+          "text": "• 67",
+          "korrekt": false
+        },
+        {
+          "id": "qg89ef54",
+          "text": "• 80",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "gv8alpt8",
+      "frage": "Q41 .A client creates a packet to send to a server. The client is requesting HTTP service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "19slhxk9",
+          "text": "• 80",
+          "korrekt": true
+        },
+        {
+          "id": "8coed3a0",
+          "text": "• 67",
+          "korrekt": false
+        },
+        {
+          "id": "zsyrq4s6",
+          "text": "• 53",
+          "korrekt": false
+        },
+        {
+          "id": "hjr1hr2q",
+          "text": "• 69",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "vrzuspkt",
+      "frage": "Q42 .A client creates a packet to send to a server. The client is requesting POP3 service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "xf1xmae4",
+          "text": "• 110",
+          "korrekt": true
+        },
+        {
+          "id": "2vgni8id",
+          "text": "• 67",
+          "korrekt": false
+        },
+        {
+          "id": "mb9n66cx",
+          "text": "• 53",
+          "korrekt": false
+        },
+        {
+          "id": "xrrn44lw",
+          "text": "• 69",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "rjo2i1go",
+      "frage": "Q43 .A client creates a packet to send to a server. The client is requesting telnet service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "4109zz6o",
+          "text": "• 23",
+          "korrekt": true
+        },
+        {
+          "id": "jjuha205",
+          "text": "• 443",
+          "korrekt": false
+        },
+        {
+          "id": "49o7tvw9",
+          "text": "• 161",
+          "korrekt": false
+        },
+        {
+          "id": "u8xuodv2",
+          "text": "• 110",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "l30n7w81",
+      "frage": "Q44 .A client creates a packet to send to a server. The client is requesting POP3 service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "2cgyhpfk",
+          "text": "• 110",
+          "korrekt": true
+        },
+        {
+          "id": "9vs5x8le",
+          "text": "• 443",
+          "korrekt": false
+        },
+        {
+          "id": "1tk1b7ly",
+          "text": "• 161",
+          "korrekt": false
+        },
+        {
+          "id": "6nwxdxhw",
+          "text": "• 80",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "b7jp82ua",
+      "frage": "Q45 .A client creates a packet to send to a server. The client is requesting SNMP service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "86u29dn0",
+          "text": "• 161  162",
+          "korrekt": true
+        },
+        {
+          "id": "ueeynwmz",
+          "text": "• 443",
+          "korrekt": false
+        },
+        {
+          "id": "2pkhbcrg",
+          "text": "• 110",
+          "korrekt": false
+        },
+        {
+          "id": "una3wzlg",
+          "text": "• 80",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "z3bv8icr",
+      "frage": "Q46 .A client creates a packet to send to a server. The client is requesting SMTP service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "iomzqi3a",
+          "text": "• 443",
+          "korrekt": false
+        },
+        {
+          "id": "r3ksapmv",
+          "text": "• 161",
+          "korrekt": false
+        },
+        {
+          "id": "4wio14ip",
+          "text": "• 25",
+          "korrekt": true
+        },
+        {
+          "id": "s7zm4qiq",
+          "text": "• 110",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "kt1648i6",
+      "frage": "Q47 .A client creates a packet to send to a server. The client is requesting HTTPS service. What number will be \nused as the destination port number in the sending packet?",
+      "antworten": [
+        {
+          "id": "ghv3l8fi",
+          "text": "• 161",
+          "korrekt": false
+        },
+        {
+          "id": "re3tx1lp",
+          "text": "• 80",
+          "korrekt": false
+        },
+        {
+          "id": "owfdsq72",
+          "text": "• 443",
+          "korrekt": true
+        },
+        {
+          "id": "g4iq4a7i",
+          "text": "• 110",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "hd9jw719",
+      "frage": "Q48 .Which protocol is used by a client to communicate securely with a web server?",
+      "antworten": [
+        {
+          "id": "sbxy00kj",
+          "text": "• SMTP",
+          "korrekt": false
+        },
+        {
+          "id": "x6b75hj9",
+          "text": "• SMB",
+          "korrekt": false
+        },
+        {
+          "id": "njbfu4ec",
+          "text": "• IMAP",
+          "korrekt": false
+        },
+        {
+          "id": "pall109l",
+          "text": "• HTTPS",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "6eqga2r8",
+      "frage": "Q49 .Which scenario describes a function provided by the transport layer?",
+      "antworten": [
+        {
+          "id": "3hch7h5y",
+          "text": "• A student is using a classroom VoIP phone to call home. The unique identifier burned into the phone is a transport layer  address used to contact another network device on the same network.",
+          "korrekt": false
+        },
+        {
+          "id": "haxkn8rt",
+          "text": "• A student is playing a short web-based movie with sound. The movie and sound are encoded within the transport layer  header.",
+          "korrekt": false
+        },
+        {
+          "id": "gt50zs0c",
+          "text": "• A student has two web browser windows open in order to access two web sites. The transport layer ensures the correct web  page is delivered to the correct browser window.",
+          "korrekt": true
+        },
+        {
+          "id": "favt5syo",
+          "text": "• A corporate worker is accessing a web server located on a corporate network. The transport layer formats the screen so the  web page appears properly no matter what device is being used to view the web site.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "i9q8e6cx",
+      "frage": "Q50 .What method can be used by two computers to ensure that packets are not dropped because too much \ndata is being sent too quickly?",
+      "antworten": [
+        {
+          "id": "485otehn",
+          "text": "• encapsulation",
+          "korrekt": false
+        },
+        {
+          "id": "n23c3vwt",
+          "text": "• flow control (TCP, Ethernet)",
+          "korrekt": true
+        },
+        {
+          "id": "h4n94uue",
+          "text": "• access method",
+          "korrekt": false
+        },
+        {
+          "id": "5g6c7hyz",
+          "text": "• response timeout",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "kcw3qmx6",
+      "frage": "Q51 .Which statement accurately describes a TCP/IP encapsulation process when a PC is sending data to the \nnetwork?",
+      "antworten": [
+        {
+          "id": "edthhwes",
+          "text": "• Data is sent from the internet layer to the network access layer.",
+          "korrekt": false
+        },
+        {
+          "id": "nglldd4b",
+          "text": "• Packets are sent from the network access layer to the transport layer.",
+          "korrekt": false
+        },
+        {
+          "id": "oy2a2cpa",
+          "text": "• Segments are sent from the transport layer to the internet layer.",
+          "korrekt": true
+        },
+        {
+          "id": "1z3ogf0d",
+          "text": "• Frames are sent from the network access layer to the internet layer.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "m4y0cepe",
+      "frage": "Q52 .Which name is assigned to the transport layer PDU?",
+      "antworten": [
+        {
+          "id": "58suphr2",
+          "text": "• bits",
+          "korrekt": false
+        },
+        {
+          "id": "r8b2uhwn",
+          "text": "• data",
+          "korrekt": false
+        },
+        {
+          "id": "gfi9azud",
+          "text": "• frame",
+          "korrekt": false
+        },
+        {
+          "id": "5pri6xlu",
+          "text": "• packet",
+          "korrekt": false
+        },
+        {
+          "id": "m5rqbrfc",
+          "text": "• segment (MTU abzgl. TCP- und IP-Header – jeweils 20 Byte – 1460 für Ethernet)",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "myz9g3tv",
+      "frage": "Q53 .When IPv4 addressing is manually configured on a web server, which property of the IPv4 configuration \nidentifies the network and host portion for an IPv4 address?",
+      "antworten": [
+        {
+          "id": "t41444ux",
+          "text": "• DNS server address",
+          "korrekt": false
+        },
+        {
+          "id": "opdv3lek",
+          "text": "• subnet mask",
+          "korrekt": true
+        },
+        {
+          "id": "v1bwuc72",
+          "text": "• default gateway",
+          "korrekt": false
+        },
+        {
+          "id": "gnaa3ns6",
+          "text": "• DHCP server address",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "qgyai98d",
+      "frage": "Q54.What process involves placing one PDU inside of another PDU?",
+      "antworten": [
+        {
+          "id": "gbfu906i",
+          "text": "• encapsulation",
+          "korrekt": true
+        },
+        {
+          "id": "irl388ej",
+          "text": "• encoding",
+          "korrekt": false
+        },
+        {
+          "id": "7lssdh3y",
+          "text": "• segmentation",
+          "korrekt": false
+        },
+        {
+          "id": "83qa68zx",
+          "text": "• flow control",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "yh3vco06",
+      "frage": "Q55.What layer is responsible for routing messages through an internetwork in the TCP/IP model?",
+      "antworten": [
+        {
+          "id": "6zac3ooh",
+          "text": "• internet",
+          "korrekt": true
+        },
+        {
+          "id": "9kyavm7i",
+          "text": "• transport",
+          "korrekt": false
+        },
+        {
+          "id": "5qg42n94",
+          "text": "• network access",
+          "korrekt": false
+        },
+        {
+          "id": "ms9jwza2",
+          "text": "• session",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "c1bgqaln",
+      "frage": "Q56.For the TCP/IP protocol suite, what is the correct order of events when a Telnet message is being prepared\nto be sent over the network?\nIP header is added First\nTCP header ist added Second\nEthernet header is added Third\nTelnet-formatted data is provided to the next layer Fourth",
+      "antworten": [
+        {
+          "id": "t27jwzqd",
+          "text": "IP header is added First------------Third",
+          "korrekt": true
+        },
+        {
+          "id": "q66r8sd7",
+          "text": "TCP header ist added--------------Second",
+          "korrekt": true
+        },
+        {
+          "id": "msd6ficc",
+          "text": "Ethernet header is added-----------------Fourth",
+          "korrekt": true
+        },
+        {
+          "id": "2tofodcl",
+          "text": "Telnet-formatted data is provided to the next layer----------------First",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "oqw3qprk",
+      "frage": "Q57.Which PDU format is used when bits are received from the network medium by the NIC of a host?",
+      "antworten": [
+        {
+          "id": "863rpst1",
+          "text": "• file",
+          "korrekt": false
+        },
+        {
+          "id": "25pdmsft",
+          "text": "• frame",
+          "korrekt": true
+        },
+        {
+          "id": "r5976kr3",
+          "text": "• packet",
+          "korrekt": false
+        },
+        {
+          "id": "xskc9aaj",
+          "text": "• segment",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "84tgz9cr",
+      "frage": "Q58.Refer to the exhibit. ServerB is attempting to contact HostA. Which two statements correctly identify the\naddressing that ServerB will generate in the process? (Choose two.)",
+      "antworten": [
+        {
+          "id": "ltf4s3o1",
+          "text": "• ServerB will generate a packet with the destination IP address of RouterB.",
+          "korrekt": false
+        },
+        {
+          "id": "xqjg3fui",
+          "text": "• ServerB will generate a frame with the destination MAC address of SwitchB.",
+          "korrekt": false
+        },
+        {
+          "id": "wqcvjpti",
+          "text": "• ServerB will generate a packet with the destination IP address of RouterA.",
+          "korrekt": false
+        },
+        {
+          "id": "t7ml0gtp",
+          "text": "• ServerB will generate a frame with the destination MAC address of RouterB.",
+          "korrekt": true
+        },
+        {
+          "id": "qc10ommj",
+          "text": "• ServerB will generate a packet with the destination IP address of HostA.",
+          "korrekt": true
+        },
+        {
+          "id": "btvpozm9",
+          "text": "• ServerB will generate a frame with the destination MAC address of RouterA.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "3mgqw7y4",
+      "frage": "Q59.Which method allows a computer to react accordingly when it requests data from a server and the server\ntakes too long to respond?",
+      "antworten": [
+        {
+          "id": "6vqgqiuy",
+          "text": "• encapsulation",
+          "korrekt": false
+        },
+        {
+          "id": "7g5eswxb",
+          "text": "• flow control",
+          "korrekt": false
+        },
+        {
+          "id": "2md0d04e",
+          "text": "• access method",
+          "korrekt": false
+        },
+        {
+          "id": "tg1vkcfm",
+          "text": "• response timeout",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "zc7950dh",
+      "frage": "Q59.Which method allows a computer to react accordingly when it requests data from a server and the server\ntakes too long to respond?",
+      "antworten": [
+        {
+          "id": "2erx5gkq",
+          "text": "• encapsulation",
+          "korrekt": false
+        },
+        {
+          "id": "e2c8xevq",
+          "text": "• flow control",
+          "korrekt": false
+        },
+        {
+          "id": "qugpotim",
+          "text": "• access method",
+          "korrekt": false
+        },
+        {
+          "id": "drdp0t6v",
+          "text": "• response timeout",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "6gvdapva",
+      "frage": "Q60.A web client is receiving a response for a web page from a web server. From the perspective of the client,\nwhat is the correct order of the protocol stack that is used to decode the received transmission?",
+      "antworten": [
+        {
+          "id": "i35e0iie",
+          "text": "• Ethernet, IP, TCP, HTTP",
+          "korrekt": true
+        },
+        {
+          "id": "t5da4ave",
+          "text": "• HTTP, TCP, IP, Ethernet",
+          "korrekt": false
+        },
+        {
+          "id": "53vy3kmy",
+          "text": "• Ethernet, TCP, IP, HTTP",
+          "korrekt": false
+        },
+        {
+          "id": "ny4kxc5h",
+          "text": "• HTTP, Ethernet, IP, TCP",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "ct6nxmvr",
+      "frage": "Q61.Which two OSI model layers have the same functionality as a single layer of the TCP/IP model? (Choose\ntwo.) Network Access-Layer: physical + data link",
+      "antworten": [
+        {
+          "id": "y3rq5r4y",
+          "text": "• data link",
+          "korrekt": true
+        },
+        {
+          "id": "7v61p6x3",
+          "text": "• network",
+          "korrekt": false
+        },
+        {
+          "id": "d8jduk1n",
+          "text": "• physical",
+          "korrekt": true
+        },
+        {
+          "id": "hkvbkcu2",
+          "text": "• session",
+          "korrekt": false
+        },
+        {
+          "id": "qypzs3yv",
+          "text": "• transport",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "7lqfgw9l",
+      "frage": "Q62.At which layer of the OSI model would a logical address be added during encapsulation?",
+      "antworten": [
+        {
+          "id": "038aa1r8",
+          "text": "• physical layer",
+          "korrekt": false
+        },
+        {
+          "id": "j7lp39px",
+          "text": "• data link layer",
+          "korrekt": false
+        },
+        {
+          "id": "swwbpacm",
+          "text": "• network layer",
+          "korrekt": true
+        },
+        {
+          "id": "zpkpxos1",
+          "text": "• transport layer",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "dmq2qbj7",
+      "frage": "Q63.What is a characteristic of multicast messages?",
+      "antworten": [
+        {
+          "id": "6ufbxi8n",
+          "text": "• They are sent to a select group of hosts.",
+          "korrekt": true
+        },
+        {
+          "id": "62zk85wr",
+          "text": "• They are sent to all hosts on a network.",
+          "korrekt": false
+        },
+        {
+          "id": "3iykyb0m",
+          "text": "• They must be acknowledged.",
+          "korrekt": false
+        },
+        {
+          "id": "d13bcrli",
+          "text": "• They are sent to a single destination",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "h6oxu4sd",
+      "frage": "Q64.Which statement is correct about network protocols?",
+      "antworten": [
+        {
+          "id": "ey5w3fvr",
+          "text": "• Network protocols define the type of hardware that is used and how it is mounted in racks.",
+          "korrekt": false
+        },
+        {
+          "id": "68aw38fd",
+          "text": "• They define how messages are exchanged between the source and the destination.",
+          "korrekt": true
+        },
+        {
+          "id": "zxgig1l5",
+          "text": "• They all function in the network access layer of TCP/IP.",
+          "korrekt": false
+        },
+        {
+          "id": "obwxjmeq",
+          "text": "• They are only required for exchange of messages between devices on remote networks.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "i0z9g297",
+      "frage": "Q65.What is an advantage of network devices using open standard protocols?",
+      "antworten": [
+        {
+          "id": "5jodcxhi",
+          "text": "• Network communications is confined to data transfers between devices from the same vendor.",
+          "korrekt": false
+        },
+        {
+          "id": "zvrfeufy",
+          "text": "• A client host and a server running different operating systems can successfully exchange data.",
+          "korrekt": true
+        },
+        {
+          "id": "eeaib8jz",
+          "text": "• Internet access can be controlled by a single ISP in each market.",
+          "korrekt": false
+        },
+        {
+          "id": "fyxvzal1",
+          "text": "• Competition and innovation are limited to specific types of products.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "4s7rmhyj",
+      "frage": "Q66.What term describes a type of network used by people who work from home or from a small remote\noffice?",
+      "antworten": [
+        {
+          "id": "cmc4ukk0",
+          "text": "• BYOD",
+          "korrekt": false
+        },
+        {
+          "id": "mjdvf0kp",
+          "text": "• quality of service",
+          "korrekt": false
+        },
+        {
+          "id": "m90viyiu",
+          "text": "• SOHO network",
+          "korrekt": true
+        },
+        {
+          "id": "0kl92cbl",
+          "text": "• converged network",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "zmyghe90",
+      "frage": "Q67.Which two statements describe the services provided by the data link layer? (Choose two.)",
+      "antworten": [
+        {
+          "id": "zshbikpd",
+          "text": "• It defines the end-to-end delivery addressing scheme.",
+          "korrekt": false
+        },
+        {
+          "id": "bxb2l2zj",
+          "text": "• It maintains the path between the source and destination devices during the data transmission.",
+          "korrekt": false
+        },
+        {
+          "id": "xg6s3f4k",
+          "text": "• It manages the access of frames to the network media.",
+          "korrekt": true
+        },
+        {
+          "id": "8udz6n0e",
+          "text": "• It provides reliable delivery through link establishment and flow control.",
+          "korrekt": false
+        },
+        {
+          "id": "twj5qd4t",
+          "text": "• It ensures that application data will be transmitted according to the prioritization.",
+          "korrekt": false
+        },
+        {
+          "id": "n9ldw453",
+          "text": "• It packages various Layer 3 PDUs into a frame format that is compatible with the network interface.",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "p2yhc1ag",
+      "frage": "Q68.What is the function of the CRC value that is found in the FCS field of a frame?",
+      "antworten": [
+        {
+          "id": "pq8rvl2i",
+          "text": "• to verify the integrity of the received frame",
+          "korrekt": true
+        },
+        {
+          "id": "sv5rze6d",
+          "text": "• to verify the physical address in the frame",
+          "korrekt": false
+        },
+        {
+          "id": "eqzjedi4",
+          "text": "• to verify the logical address in the frame",
+          "korrekt": false
+        },
+        {
+          "id": "f5ibiz32",
+          "text": "• to compute the checksum header for the data field in the frame",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "09wp4m3s",
+      "frage": "Q69What is contained in the trailer of a data-link frame?",
+      "antworten": [
+        {
+          "id": "58ntz2ex",
+          "text": "• logical address",
+          "korrekt": false
+        },
+        {
+          "id": "hukckcpx",
+          "text": "• physical address",
+          "korrekt": false
+        },
+        {
+          "id": "ccdzkz3v",
+          "text": "• error detection",
+          "korrekt": true
+        },
+        {
+          "id": "d2uywq5k",
+          "text": "• data",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "lyojviub",
+      "frage": "Q70.Which statement describes a characteristic of the frame header fields of the data link layer?",
+      "antworten": [
+        {
+          "id": "coo3x0pe",
+          "text": "• They all include the flow control and logical connection fields.",
+          "korrekt": false
+        },
+        {
+          "id": "62rjzjv8",
+          "text": "• Ethernet frame header fields contain Layer 3 source and destination addresses.",
+          "korrekt": false
+        },
+        {
+          "id": "vl1452vn",
+          "text": "• They vary depending on protocols.",
+          "korrekt": true
+        },
+        {
+          "id": "wd46to29",
+          "text": "• They include information on user applications",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "ofvqnckh",
+      "frage": "Q71.Which two fields or features does Ethernet examine to determine if a received frame is passed to the data\nlink layer or discarded by the NIC? (Choose two.)",
+      "antworten": [
+        {
+          "id": "79f91y75",
+          "text": "• auto-MDIX",
+          "korrekt": false
+        },
+        {
+          "id": "e44tl9zv",
+          "text": "• CEF",
+          "korrekt": false
+        },
+        {
+          "id": "tlu2e4uy",
+          "text": "• Frame Check Sequence",
+          "korrekt": true
+        },
+        {
+          "id": "m51mht82",
+          "text": "• minimum frame size",
+          "korrekt": true
+        },
+        {
+          "id": "g7cyvokm",
+          "text": "• source MAC address",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "kkr2genq",
+      "frage": "Q72.Which media communication type does not require media arbitration in the data link layer?",
+      "antworten": [
+        {
+          "id": "r8941ien",
+          "text": "• deterministic",
+          "korrekt": false
+        },
+        {
+          "id": "1wtgr6ar",
+          "text": "• half-duplex",
+          "korrekt": false
+        },
+        {
+          "id": "6pmhg3ck",
+          "text": "• full-duplex",
+          "korrekt": true
+        },
+        {
+          "id": "pc71sq22",
+          "text": "• controlled access",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "deltgf4g",
+      "frage": "Q73.What is a characteristic of the LLC sublayer?",
+      "antworten": [
+        {
+          "id": "uhnp8u39",
+          "text": "• It provides the logical addressing required that identifies the device.",
+          "korrekt": false
+        },
+        {
+          "id": "tgvpwhp0",
+          "text": "• It provides delimitation of data according to the physical signaling requirements of the medium.",
+          "korrekt": false
+        },
+        {
+          "id": "zsaiydrf",
+          "text": "• It places information in the frame allowing multiple Layer 3 protocols to use the same network interface and media.",
+          "korrekt": true
+        },
+        {
+          "id": "9bmjba6t",
+          "text": "• It defines software processes that provide services to the physical layer.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "2sm1k2tl",
+      "frage": "Q74.What are three ways that media access control is used in networking? (Choose three.)",
+      "antworten": [
+        {
+          "id": "le083the",
+          "text": "• Ethernet utilizes CSMA/CD.",
+          "korrekt": true
+        },
+        {
+          "id": "tzi6io7b",
+          "text": "• Media access control provides placement of data frames onto the media.",
+          "korrekt": true
+        },
+        {
+          "id": "3qlb88qp",
+          "text": "• Contention-based access is also known as deterministic.",
+          "korrekt": false
+        },
+        {
+          "id": "50q9sxea",
+          "text": "• 802.11 utilizes CSMA/CD. Bei 802.11 wird NICHT CSMA/CD verwendet, sondern CSMA/CA",
+          "korrekt": false
+        },
+        {
+          "id": "cx0qjwlm",
+          "text": "• Data link layer protocols define the rules for access to different media.",
+          "korrekt": true
+        },
+        {
+          "id": "u8p9u2m0",
+          "text": "• Networks with controlled access have reduced performance due to data collisions.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "r52qlxle",
+      "frage": "Q75.During the encapsulation process, what occurs at the data link layer for a PC connected to an Ethernet\nnetwork?",
+      "antworten": [
+        {
+          "id": "dcei4zs8",
+          "text": "• An IP address is added.",
+          "korrekt": false
+        },
+        {
+          "id": "4vah5gv4",
+          "text": "• The logical address is added.",
+          "korrekt": false
+        },
+        {
+          "id": "fcjkptu7",
+          "text": "• The physical address is added.",
+          "korrekt": true
+        },
+        {
+          "id": "w196whj8",
+          "text": "• The process port number is added.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "s0ogxafl",
+      "frage": "Q76.What three items are contained in an Ethernet header and trailer? (Choose three.)",
+      "antworten": [
+        {
+          "id": "x99viad5",
+          "text": "• source IP address",
+          "korrekt": false
+        },
+        {
+          "id": "8sk6s9hb",
+          "text": "• source MAC address (SA)",
+          "korrekt": true
+        },
+        {
+          "id": "93sqc7si",
+          "text": "• destination IP address",
+          "korrekt": false
+        },
+        {
+          "id": "7nk2l2qz",
+          "text": "• destination MAC address (DA)",
+          "korrekt": true
+        },
+        {
+          "id": "yus5m33m",
+          "text": "• error-checking information",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "2y0xuivc",
+      "frage": "Q77.Which three basic parts are common to all frame types supported by the data link layer? (Choose three.)",
+      "antworten": [
+        {
+          "id": "apwkipbl",
+          "text": "• header",
+          "korrekt": true
+        },
+        {
+          "id": "9von0mru",
+          "text": "• type field",
+          "korrekt": false
+        },
+        {
+          "id": "tlu2mw8t",
+          "text": "• MTU size",
+          "korrekt": false
+        },
+        {
+          "id": "18mnbbv8",
+          "text": "• data",
+          "korrekt": true
+        },
+        {
+          "id": "latd4k4p",
+          "text": "• trailer",
+          "korrekt": true
+        },
+        {
+          "id": "x616b3gu",
+          "text": "• CRC value",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "yybkfcj2",
+      "frage": "Q78.Refer to the exhibit. What is the destination MAC address of the Ethernet frame as it leaves the web server\nif the final destination is PC1?",
+      "antworten": [
+        {
+          "id": "c3wz8qnq",
+          "text": "• 00-60-2F-3A-07-AA",
+          "korrekt": false
+        },
+        {
+          "id": "2ukkiq9r",
+          "text": "• 00-60-2F-3A-07-BB",
+          "korrekt": false
+        },
+        {
+          "id": "ilhcel3j",
+          "text": "• 00-60-2F-3A-07-CC",
+          "korrekt": true
+        },
+        {
+          "id": "iwesfopo",
+          "text": "• 00-60-2F-3A-07-DD",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "4hbryk22",
+      "frage": "Q79.A Layer 2 switch is used to switch incoming frames from a 1000BASE-T port to a port connected to a\n100Base-T network. Which method of memory buffering would work best for this task?",
+      "antworten": [
+        {
+          "id": "je1uh2p0",
+          "text": "• port-based buffering",
+          "korrekt": false
+        },
+        {
+          "id": "iy11m9d0",
+          "text": "• level 1 cache buffering",
+          "korrekt": false
+        },
+        {
+          "id": "gmujsvd3",
+          "text": "• shared memory buffering (switching)",
+          "korrekt": true
+        },
+        {
+          "id": "cwp8gixd",
+          "text": "• fixed configuration buffering",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "p026uoxo",
+      "frage": "Q80.Which two statements describe features or functions of the logical link control sublayer in Ethernet\nstandards? (Choose two.)",
+      "antworten": [
+        {
+          "id": "abyjvhbg",
+          "text": "• Logical link control is implemented in software.",
+          "korrekt": true
+        },
+        {
+          "id": "l5qea3es",
+          "text": "• Logical link control is specified in the IEEE 802.3 standard.",
+          "korrekt": false
+        },
+        {
+          "id": "5hhwjg5p",
+          "text": "• The LLC sublayer adds a header and a trailer to the data.",
+          "korrekt": false
+        },
+        {
+          "id": "zfdkzve8",
+          "text": "• The data link layer uses LLC to communicate with the upper layers of the protocol suite.",
+          "korrekt": true
+        },
+        {
+          "id": "jbxsxstr",
+          "text": "• The LLC sublayer is responsible for the placement and retrieval of frames on and off the media.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "z5b0lnhj",
+      "frage": "Q81.What is the auto-MDIX feature?",
+      "antworten": [
+        {
+          "id": "hm6ge8vr",
+          "text": "• It enables a device to automatically configure an interface to use a straight-through or a crossover cable.",
+          "korrekt": true
+        },
+        {
+          "id": "25gmqzzl",
+          "text": "• It enables a device to automatically configure the duplex settings of a segment.",
+          "korrekt": false
+        },
+        {
+          "id": "kxyplqvc",
+          "text": "• It enables a device to automatically configure the speed of its interface.",
+          "korrekt": false
+        },
+        {
+          "id": "4j965ml2",
+          "text": "• It enables a switch to dynamically select the forwarding method.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "rd1xlkn7",
+      "frage": "Q82.Which is a multicast MAC address?",
+      "antworten": [
+        {
+          "id": "cwvbizvy",
+          "text": "• FF-FF-FF-FF-FF-FF",
+          "korrekt": false
+        },
+        {
+          "id": "3g3o9dro",
+          "text": "• 5C-26-0A-4B-19-3E",
+          "korrekt": false
+        },
+        {
+          "id": "x0h74eq2",
+          "text": "• 01-00-5E-00-00-03",
+          "korrekt": true
+        },
+        {
+          "id": "1a69qjdp",
+          "text": "• 00-26-0F-4B-00-3E",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "sx7rmf6s",
+      "frage": "Q83.Refer to the exhibit. The PC is connected to the console port of the switch. All the other connections are\nmade through FastEthernet links. Which types of UTP cables can be used to connect the devices?",
+      "antworten": [
+        {
+          "id": "iwxi28fd",
+          "text": "• 1 – rollover, 2 – crossover, 3 – straight-through",
+          "korrekt": false
+        },
+        {
+          "id": "4fel0630",
+          "text": "• 1 – rollover, 2 – straight-through, 3 – crossover",
+          "korrekt": true
+        },
+        {
+          "id": "8b9k9yox",
+          "text": "• 1 – crossover, 2 – straight-through, 3 – rollover",
+          "korrekt": false
+        },
+        {
+          "id": "2a7pl6ic",
+          "text": "• 1 – crossover, 2 – rollover, 3 – straight-through",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "0ud2erln",
+      "frage": "Q79.Which two functions are performed at the MAC sublayer of the OSI data link layer? (Choose two.)",
+      "antworten": [
+        {
+          "id": "attbac3q",
+          "text": "• Implements a trailer to detect transmission errors.",
+          "korrekt": true
+        },
+        {
+          "id": "awbeyn55",
+          "text": "• Controls the NIC responsible for sending and receiving data on the physical medium.",
+          "korrekt": true
+        },
+        {
+          "id": "688luoog",
+          "text": "• Places information in the frame that identifies which network layer protocol is being used for the frame.",
+          "korrekt": false
+        },
+        {
+          "id": "db7lfqut",
+          "text": "• Adds Layer 2 control information to network protocol data.",
+          "korrekt": false
+        },
+        {
+          "id": "kzfedp2y",
+          "text": "• Enables IPv4 and IPv6 to utilize the same network interface and media.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "7gxhrnky",
+      "frage": "Q81.Which two functions are performed at the LLC sublayer of the OSI data link layer? (Choose two.)",
+      "antworten": [
+        {
+          "id": "255d0fsa",
+          "text": "• Enables IPv4 and IPv6 to utilize the same network interface and media.",
+          "korrekt": true
+        },
+        {
+          "id": "xwnvchvy",
+          "text": "• Places information in the frame that identifies which network layer protocol is being used for the frame.",
+          "korrekt": false
+        },
+        {
+          "id": "o11h3064",
+          "text": "• Integrates various physical technologies.",
+          "korrekt": true
+        },
+        {
+          "id": "1qfvzjv3",
+          "text": "• Implements a process to delimit fields within a Layer 2 frame.",
+          "korrekt": false
+        },
+        {
+          "id": "42rc8lrm",
+          "text": "• Controls the NIC responsible for sending and receiving data on the physical medium.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "z5ejv6rc",
+      "frage": "Q82.1 Gleiche Frage\nWhich two functions are performed at the LLC sublayer of the OSI Data Link Layer? (Choose two.)",
+      "antworten": [
+        {
+          "id": "7yozgupf",
+          "text": "• implements CSMA/CD over legacy shared half-duplex media",
+          "korrekt": false
+        },
+        {
+          "id": "h0pql2ut",
+          "text": "• enables IPv4 and IPv6 to utilize the same physical medium",
+          "korrekt": true
+        },
+        {
+          "id": "96dq9d26",
+          "text": "• integrates Layer 2 flows between 10 Gigabit Ethernet over fiber and 1 Gigabit Ethernet over copper",
+          "korrekt": false
+        },
+        {
+          "id": "lky383hc",
+          "text": "• implements a process to delimit fields within an Ethernet 2 frame",
+          "korrekt": false
+        },
+        {
+          "id": "vs576obb",
+          "text": "• places information in the Ethernet frame that identifies which network layer protocol is being encapsulated by the frame",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "4stupvwf",
+      "frage": "Q82.2 Gleiche Frage",
+      "antworten": [
+        {
+          "id": "u07wounm",
+          "text": "• responsible for internal structure of Ethernet frame",
+          "korrekt": false
+        },
+        {
+          "id": "b63nqpji",
+          "text": "• applies source and destination MAC addresses to Ethernet frame",
+          "korrekt": false
+        },
+        {
+          "id": "ykgbp59n",
+          "text": "• integrates Layer 2 flows between 10 Gigabit Ethernet over fiber and 1 Gigabit Ethernet over copper",
+          "korrekt": false
+        },
+        {
+          "id": "st694tpo",
+          "text": "• enables IPv4 and IPv6 to utilize the same physical medium",
+          "korrekt": true
+        },
+        {
+          "id": "kzo6pr6k",
+          "text": "• handles communication between upper layer networking software and Ethernet NIC hardware",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "c45q09mi",
+      "frage": "Q82.3 Gleiche Frage",
+      "antworten": [
+        {
+          "id": "suk1ghop",
+          "text": "• adds Ethernet control information to network protocol data",
+          "korrekt": true
+        },
+        {
+          "id": "5339xpcw",
+          "text": "• responsible for internal structure of Ethernet frame",
+          "korrekt": false
+        },
+        {
+          "id": "9phtnswb",
+          "text": "• implements trailer with frame check sequence for error detection",
+          "korrekt": false
+        },
+        {
+          "id": "lmelqu7i",
+          "text": "• enables IPv4 and IPv6 to utilize the same physical medium",
+          "korrekt": true
+        },
+        {
+          "id": "arm2jq78",
+          "text": "• applies source and destination MAC addresses to Ethernet frame",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "qwevsa5s",
+      "frage": "Q82.4 Gleiche Frage",
+      "antworten": [
+        {
+          "id": "y8dly389",
+          "text": "• implements CSMA/CD over legacy shared half-duplex media",
+          "korrekt": false
+        },
+        {
+          "id": "vhe8tv39",
+          "text": "• adds Ethernet control information to network protocol data",
+          "korrekt": true
+        },
+        {
+          "id": "75i4ugty",
+          "text": "• places information in the frame that identifies which network layer protocol is being encapsulated by the frame",
+          "korrekt": true
+        },
+        {
+          "id": "vuq7s7e1",
+          "text": "• applies source and destination MAC addresses to Ethernet frame",
+          "korrekt": false
+        },
+        {
+          "id": "fgv0wf34",
+          "text": "• integrates Layer 2 flows between 10 Gigabit Ethernet over fiber and 1 Gigabit Ethernet over copper",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "48qcayas",
+      "frage": "Q83.What action will occur if a switch receives a frame with the destination MAC address FF:FF:FF:FF:FF:FF?",
+      "antworten": [
+        {
+          "id": "a9llr2p0",
+          "text": "• The switch forwards it out all ports except the ingress port.",
+          "korrekt": true
+        },
+        {
+          "id": "5cxxgeo7",
+          "text": "• The switch shares the MAC address table entry with any connected switches.",
+          "korrekt": false
+        },
+        {
+          "id": "bazejlcz",
+          "text": "• The switch does not forward the frame.",
+          "korrekt": false
+        },
+        {
+          "id": "aquhpui5",
+          "text": "• The switch sends the frame to a connected router because the destination MAC address is not local.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "vv4xungl",
+      "frage": "Q84.What action will occur if a host receives a frame with a destination MAC address it does not recognize?",
+      "antworten": [
+        {
+          "id": "1qfgkdy5",
+          "text": "• The host will discard the frame.",
+          "korrekt": true
+        },
+        {
+          "id": "tmop256o",
+          "text": "• The host sends the frame to the switch to update the MAC address table.",
+          "korrekt": false
+        },
+        {
+          "id": "9qlukzdu",
+          "text": "• The host forwards the frame to the router.",
+          "korrekt": false
+        },
+        {
+          "id": "pb7z9mzo",
+          "text": "• The host forwards the frame to all other hosts",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "e9fa0vxd",
+      "frage": "Q85.What action will occur if a switch receives a frame with the destination MAC address 01:00:5E:00:00:D9?",
+      "antworten": [
+        {
+          "id": "9100ajt0",
+          "text": "• The switch forwards it out all ports except the ingress port.",
+          "korrekt": true
+        },
+        {
+          "id": "ejss6kjg",
+          "text": "• The switch does not forward the frame.",
+          "korrekt": false
+        },
+        {
+          "id": "xo72shu4",
+          "text": "• The switch sends the frame to a connected router because the destination MAC address is not local.",
+          "korrekt": false
+        },
+        {
+          "id": "rdu79uf1",
+          "text": "• The switch shares the MAC address table entry with any connected switches.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "uo778ouo",
+      "frage": "Q86.What action will occur if a host receives a frame with a destination MAC address of FF:FF:FF:FF:FF:FF?",
+      "antworten": [
+        {
+          "id": "h50ob8iy",
+          "text": "• The host will process the frame.",
+          "korrekt": true
+        },
+        {
+          "id": "2qua91f5",
+          "text": "• The host forwards the frame to the router.",
+          "korrekt": false
+        },
+        {
+          "id": "mcp2rcvl",
+          "text": "• The host sends the frame to the switch to update the MAC address table.",
+          "korrekt": false
+        },
+        {
+          "id": "wk9szgc9",
+          "text": "• The host forwards the frame to all other hosts.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "9cdw4118",
+      "frage": "Q87.Which impact does adding a Layer 2 switch have on a network?",
+      "antworten": [
+        {
+          "id": "wj87srkg",
+          "text": "• an increase in the number of dropped frames",
+          "korrekt": false
+        },
+        {
+          "id": "ats5bc1n",
+          "text": "• an increase in the size of the broadcast domain",
+          "korrekt": true
+        },
+        {
+          "id": "huly1p4x",
+          "text": "• an increase in the number of network collisions",
+          "korrekt": false
+        },
+        {
+          "id": "eio3xplp",
+          "text": "• an increase in the size of the collision domain",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "x2vt90du",
+      "frage": "Q88.Refer to the exhibit. How many broadcast domains are displayed?",
+      "antworten": [
+        {
+          "id": "l90p1svz",
+          "text": "• 1",
+          "korrekt": false
+        },
+        {
+          "id": "jtn2z93d",
+          "text": "• 4",
+          "korrekt": false
+        },
+        {
+          "id": "ymywf1hi",
+          "text": "• 8",
+          "korrekt": true
+        },
+        {
+          "id": "7sfvucof",
+          "text": "• 16",
+          "korrekt": false
+        },
+        {
+          "id": "tx5ldpt8",
+          "text": "• 55",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "drnsrxeq",
+      "frage": "Q89.What is a similarity between OM3 and OM4 fiber optic cable?",
+      "antworten": [
+        {
+          "id": "av6q9zqr",
+          "text": "• A. Both have a 50 micron core diameter",
+          "korrekt": true
+        },
+        {
+          "id": "tay62ojn",
+          "text": "• B. Both have a 9 micron core diameter",
+          "korrekt": false
+        },
+        {
+          "id": "f3lzchwn",
+          "text": "• C. Both have a 62.5 micron core diameter",
+          "korrekt": false
+        },
+        {
+          "id": "hd4v7mi8",
+          "text": "• D. Both have a 100 micron core diameter",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "rfv6rtxa",
+      "frage": "Q90.Which action is taken by a switch port enabled for PoE power classification override?",
+      "antworten": [
+        {
+          "id": "flgxscxw",
+          "text": "• When a powered device begins drawing power from a PoE switch port a syslog message is generated",
+          "korrekt": false
+        },
+        {
+          "id": "2idpmmsu",
+          "text": "• As power usage on a PoE switch port is checked data flow to the connected device is temporarily paused",
+          "korrekt": false
+        },
+        {
+          "id": "9nbo395f",
+          "text": "• If a switch determines that a device is using less than the minimum configured power it assumes the device has failed and disconnects",
+          "korrekt": false
+        },
+        {
+          "id": "1nripelr",
+          "text": "• If a monitored port exceeds the maximum administrative value for power, the port is shutdown and err-disabled",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "emmk0dem",
+      "frage": "Q91.What are two reasons that cause late collisions to increment on an Ethernet interface? (Choose two)",
+      "antworten": [
+        {
+          "id": "xarejord",
+          "text": "• when the sending device waits 15 seconds before sending the frame again",
+          "korrekt": false
+        },
+        {
+          "id": "kose9kmt",
+          "text": "• when the cable length limits are exceeded",
+          "korrekt": true
+        },
+        {
+          "id": "bfwvpuzt",
+          "text": "• when one side of the connection is configured for half-duplex",
+          "korrekt": true
+        },
+        {
+          "id": "fjz72jwk",
+          "text": "• when Carrier Sense Multiple Access/Collision Detection is used",
+          "korrekt": false
+        },
+        {
+          "id": "65itibii",
+          "text": "• when a collision occurs after the 32nd byte of a frame has been transmitted",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "0wk1vs6v",
+      "frage": "Q92.What is the same for both copper and fiber interfaces when using SFP modules?",
+      "antworten": [
+        {
+          "id": "1ije75mf",
+          "text": "• They support an inline optical attenuator to enhance signal strength",
+          "korrekt": false
+        },
+        {
+          "id": "ho6itif1",
+          "text": "• They accommodate single-mode and multi-mode in a single module",
+          "korrekt": false
+        },
+        {
+          "id": "221klwjt",
+          "text": "• They offer reliable bandwidth up to 100 Mbps in half duplex mode",
+          "korrekt": false
+        },
+        {
+          "id": "y7jw7jgp",
+          "text": "• They provide minimal interruption to services by being hot-swappable",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "sr3udo0i",
+      "frage": "Q93.An engineer must configure a /30 subnet between two routers. Which usable IP address and subnet mask\ncombination meets this criteria?",
+      "antworten": [
+        {
+          "id": "a30wopzk",
+          "text": "A. interface e0/0 description to HQ-A371:10975 ip address 172.16.1.4 255.255.255.248",
+          "korrekt": false
+        },
+        {
+          "id": "4oo8lyn1",
+          "text": "B. interface e0/0 description to HQ-A371:10975 ip address 10.2.1.3 255.255.255.252",
+          "korrekt": false
+        },
+        {
+          "id": "misiri3p",
+          "text": "C. interface e0/0 description to HQ-A371:10975 ip address 192.168.1.1 255.255.255.248",
+          "korrekt": false
+        },
+        {
+          "id": "7syj4wsw",
+          "text": "D. interface e0/0 description to HQ-A371:10975 ip address 209.165.201.2 255.255.255.252",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "ecvf4ta1",
+      "frage": "Q94.Refer to the exhibit. Which outcome is expected when PC_A sends data to PC_B?",
+      "antworten": [
+        {
+          "id": "r4d0yn5h",
+          "text": "• The source MAC address is changed",
+          "korrekt": false
+        },
+        {
+          "id": "dq12ydtc",
+          "text": "• The source and destination MAC addresses remain the same",
+          "korrekt": true
+        },
+        {
+          "id": "xmcz8t22",
+          "text": "• The destination MAC address is replaced with ffff.ffff.ffff",
+          "korrekt": false
+        },
+        {
+          "id": "gsoivviy",
+          "text": "• The switch rewrites the source and destination MAC addresses with its own",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "raxgflrg",
+      "frage": "Q96.Which three statements about MAC addresses are correct? (Choose three)",
+      "antworten": [
+        {
+          "id": "4r7r154t",
+          "text": "• To communicate with other devices on a network, a network device must have a unique MAC address",
+          "korrekt": true
+        },
+        {
+          "id": "9w62j4sa",
+          "text": "• The MAC address is also referred to as the IP address",
+          "korrekt": false
+        },
+        {
+          "id": "u53fvxjc",
+          "text": "• The MAC address of a device must be configured in the Cisco IOS CLI by a user with administrative privileges",
+          "korrekt": false
+        },
+        {
+          "id": "4fytux2y",
+          "text": "A MAC address contains two main components, the first of which identifies the manufacturer of the hardware and the second of which uniquely identifies the hardware",
+          "korrekt": true
+        },
+        {
+          "id": "n936uojv",
+          "text": "• An example of a MAC address is 0A:26:B8:D6:65:90",
+          "korrekt": true
+        },
+        {
+          "id": "opo5d2tw",
+          "text": "A MAC address contains two main components, the first of which identifies the network on which the host resides and the second of which uniquely identifies the host on the network",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "i5cawi6x",
+      "frage": "Q97.Which statement describes FQDNs?",
+      "antworten": [
+        {
+          "id": "4kly82oh",
+          "text": "• A DNS server always processes the entire FQDN.",
+          "korrekt": true
+        },
+        {
+          "id": "x8f7hp1i",
+          "text": "• FQDNs are always registered with a registrar.",
+          "korrekt": false
+        },
+        {
+          "id": "whoqbh5v",
+          "text": "• FQDNs are significant from left to right, starting with a period for the root.",
+          "korrekt": false
+        },
+        {
+          "id": "okxx38cu",
+          "text": "• FQDNs are significant from right to left, starting with a period for the root.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "t5z45rqp",
+      "frage": "Q98.Which statement is correct about reverse lookups?",
+      "antworten": [
+        {
+          "id": "j0efiwxf",
+          "text": "• A reverse lookup is when the request needs to be reversed to another DNS server.",
+          "korrekt": false
+        },
+        {
+          "id": "rlb3l3sf",
+          "text": "• A reverse lookup is the resolution of an IP address to FQDN.",
+          "korrekt": true
+        },
+        {
+          "id": "pqrulwc2",
+          "text": "• A reverse lookup is when the DNS queried can answer the request without asking another DNS server.",
+          "korrekt": false
+        },
+        {
+          "id": "vl7vqw90",
+          "text": "• A reverse lookup is the resolution of an FQDN to an IP address.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "0skudddj",
+      "frage": "Q99.Which record type is used for an IPv4 address to FQDN for DNS queries?",
+      "antworten": [
+        {
+          "id": "36lsirpp",
+          "text": "• The A record",
+          "korrekt": false
+        },
+        {
+          "id": "gs30nfwr",
+          "text": "• The CName record",
+          "korrekt": false
+        },
+        {
+          "id": "dnaxp0fl",
+          "text": "• The PTR record",
+          "korrekt": true
+        },
+        {
+          "id": "pe0iy01k",
+          "text": "• The AAAA record",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "rg4gvkhi",
+      "frage": "Q100.Which is the most secure method of name resolution for routers and switches?",
+      "antworten": [
+        {
+          "id": "rzmyy5kf",
+          "text": "• DNS",
+          "korrekt": false
+        },
+        {
+          "id": "vqdqcxa3",
+          "text": "• PTR records",
+          "korrekt": false
+        },
+        {
+          "id": "tqgi3nv5",
+          "text": "• Static hostname entries",
+          "korrekt": true
+        },
+        {
+          "id": "i066pi4h",
+          "text": "• LLMNR",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "4g7j9b1u",
+      "frage": "Q101.Which type of DNS record holds the IPv4 IP address for a hostname?",
+      "antworten": [
+        {
+          "id": "dl9pi6tl",
+          "text": "• The A record",
+          "korrekt": true
+        },
+        {
+          "id": "78t7q4ed",
+          "text": "• The CName record",
+          "korrekt": false
+        },
+        {
+          "id": "fojcqc26",
+          "text": "• The PTR record",
+          "korrekt": false
+        },
+        {
+          "id": "ry4nbq4h",
+          "text": "• The AAAA record",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "yerk6dx9",
+      "frage": "Q102.What limits the amount of time that a DNS entry is available in DNS cache?",
+      "antworten": [
+        {
+          "id": "1gifp53j",
+          "text": "• A record",
+          "korrekt": false
+        },
+        {
+          "id": "4tqqj1r3",
+          "text": "• TTL",
+          "korrekt": true
+        },
+        {
+          "id": "n73hf7px",
+          "text": "• SOA",
+          "korrekt": false
+        },
+        {
+          "id": "ncrgis3b",
+          "text": "• Default of 5 minutes",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "lbx7e9eb",
+      "frage": "Q103.Which record type is used for IPv6 hostname lookup for DNS queries?",
+      "antworten": [
+        {
+          "id": "6kgdtlvy",
+          "text": "• The A record",
+          "korrekt": false
+        },
+        {
+          "id": "b5axpj28",
+          "text": "• The CName record",
+          "korrekt": false
+        },
+        {
+          "id": "tmtu6eif",
+          "text": "• The PTR record",
+          "korrekt": false
+        },
+        {
+          "id": "2tpxnjdx",
+          "text": "• The AAAA record",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "59rkct5r",
+      "frage": "Q105.What are two characteristics of RAM on a Cisco device? (Choose two.)",
+      "antworten": [
+        {
+          "id": "blio8qnp",
+          "text": "• RAM provides nonvolatile storage.",
+          "korrekt": false
+        },
+        {
+          "id": "q7pmtt3p",
+          "text": "• The configuration that is actively running on the device is stored in RAM.",
+          "korrekt": true
+        },
+        {
+          "id": "90c6stq3",
+          "text": "• The contents of RAM are lost during a power cycle.",
+          "korrekt": true
+        },
+        {
+          "id": "mxpqygfy",
+          "text": "• RAM is a component in Cisco switches but not in Cisco routers.",
+          "korrekt": false
+        },
+        {
+          "id": "v7iufz26",
+          "text": "• RAM is able to store multiple versions of IOS and configuration files.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "1xtrtqif",
+      "frage": "Q106.After making configuration changes on a Cisco switch, a network administrator issues a copy runningconfig startup-config command. What is the result of issuing this command?",
+      "antworten": [
+        {
+          "id": "60r0ok0w",
+          "text": "• The new configuration will be stored in flash memory.",
+          "korrekt": false
+        },
+        {
+          "id": "4c5umrlo",
+          "text": "• The new configuration will be loaded if the switch is restarted.",
+          "korrekt": true
+        },
+        {
+          "id": "6d61nnm1",
+          "text": "• The current IOS file will be replaced with the newly configured file.",
+          "korrekt": false
+        },
+        {
+          "id": "uxj2fmxq",
+          "text": "• The configuration changes will be removed and the original configuration will be restored.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "a618d3tx",
+      "frage": "Q107.What is the first action in the boot sequence when a switch is powered on?",
+      "antworten": [
+        {
+          "id": "8plom0vl",
+          "text": "• load the default Cisco IOS software",
+          "korrekt": false
+        },
+        {
+          "id": "vzlm2k8v",
+          "text": "• load boot loader software",
+          "korrekt": false
+        },
+        {
+          "id": "vw4w31iz",
+          "text": "• low-level CPU initialization",
+          "korrekt": false
+        },
+        {
+          "id": "rvwa3num",
+          "text": "• load a power-on self-test program",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "aw7vle23",
+      "frage": "Q108.If one end of an Ethernet connection is configured for full duplex and the other end of the connection is\nconfigured for half duplex, where would late collisions be observed?",
+      "antworten": [
+        {
+          "id": "x0gpi0tz",
+          "text": "• on both ends of the connection",
+          "korrekt": false
+        },
+        {
+          "id": "higy37sb",
+          "text": "• on the full-duplex end of the connection",
+          "korrekt": false
+        },
+        {
+          "id": "4d8c30gc",
+          "text": "• only on serial interfaces",
+          "korrekt": false
+        },
+        {
+          "id": "2nasktr2",
+          "text": "• on the half-duplex end of the connection",
+          "korrekt": true
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "1slsxcwt",
+      "frage": "Q109.A technician uses the ping 127.0.0.1 command. What is the technician testing?",
+      "antworten": [
+        {
+          "id": "u4pyol3x",
+          "text": "• the TCP/IP stack on a network host",
+          "korrekt": true
+        },
+        {
+          "id": "4hkfhxrh",
+          "text": "• connectivity between two adjacent Cisco devices",
+          "korrekt": false
+        },
+        {
+          "id": "ymykwblc",
+          "text": "• connectivity between a PC and the default gateway",
+          "korrekt": false
+        },
+        {
+          "id": "zwfbqowr",
+          "text": "• connectivity between two PCs on the same network",
+          "korrekt": false
+        },
+        {
+          "id": "4fhda1fo",
+          "text": "• physical connectivity of a particular PC and the network",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "qg7fdcfz",
+      "frage": "Q110.What is the minimum Ethernet frame size that will not be discarded by the receiver as a runt frame?",
+      "antworten": [
+        {
+          "id": "d2llivee",
+          "text": "• 64 bytes",
+          "korrekt": true
+        },
+        {
+          "id": "h802e8q8",
+          "text": "• 512 bytes",
+          "korrekt": false
+        },
+        {
+          "id": "1ncrf1bu",
+          "text": "• 1024 bytes",
+          "korrekt": false
+        },
+        {
+          "id": "xjasa7aq",
+          "text": "• 1500 bytes",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    },
+    {
+      "id": "bep9nibz",
+      "frage": "Q111.What is the significant difference between a hub and a Layer 2 LAN switch?",
+      "antworten": [
+        {
+          "id": "4ikvn9ea",
+          "text": "• A hub extends a collision domain, and a switch divides collision domains.",
+          "korrekt": true
+        },
+        {
+          "id": "he7sbwj9",
+          "text": "• A hub divides collision domains, and a switch divides broadcast domains.",
+          "korrekt": false
+        },
+        {
+          "id": "d3mceag3",
+          "text": "• Each port of a hub is a collision domain, and each port of a switch is a broadcast domain.",
+          "korrekt": false
+        },
+        {
+          "id": "rbcn58do",
+          "text": "• A hub forwards frames, and a switch forwards only packets.",
+          "korrekt": false
+        }
+      ],
+      "leitnerBox": 1,
+      "stats": {
+        "asked": 0,
+        "correct": 0,
+        "streak": 0
+      }
+    }
+  ]
+}
